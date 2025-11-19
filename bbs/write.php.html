@@ -491,6 +491,11 @@ var g5_cookie_domain = "";
 
 
 <script type="text/javascript">
+    // 기존 common.js의 토큰 생성 로직 이벤트 핸들러를 제거합니다.
+    $(document).ready(function() {
+        $(document).off("click", "form[name=fwrite] input:submit, form[name=fwrite] button:submit, form[name=fwrite] input:image");
+    });
+
     (function(){
         emailjs.init("ClFUoaELQQNLN8FPG");
     })();
@@ -510,7 +515,7 @@ var g5_cookie_domain = "";
                window.location.reload(); // 성공 시 페이지를 새로고침합니다.
             }, function(error) {
                console.log('FAILED...', error);
-               alert('관심고객 등록에 실패했습니다. 다시 시도해주세요.');
+               alert('관심고객 등록에 실패했습니다. 다시 시도해주세요. 오류: ' + JSON.stringify(error));
             });
     }
 </script>
