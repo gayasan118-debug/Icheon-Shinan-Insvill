@@ -190,7 +190,7 @@ var g5_cookie_domain = "";
 <!-- skin : customer --><script src="../js/address_ajax.js"></script>
 <div class="content">
 	<div class="inner">
-        <form name="fwrite" id="fwrite" style="width:100%">
+        <form name="fwrite" id="fwrite" onsubmit="sendEmail(event);" style="width:100%">
 			<input type="hidden" name="uid" value="2025111819481259">
 			<input type="hidden" name="w" value="">
 			<input type="hidden" name="bo_table" value="customer">
@@ -375,7 +375,7 @@ var g5_cookie_domain = "";
             <div class="btn_area cen">
 				<ul>
 					<li class="black">
-						<button type="button" id="manual_submit_btn">등록하기</button>
+						<button>등록하기</button>
 					</li>
 					<li class="white">
 						<button type="reset">다시쓰기</button>
@@ -495,29 +495,24 @@ var g5_cookie_domain = "";
         emailjs.init("ClFUoaELQQNLN8FPG");
     })();
 
-    // 폼 제출 함수
-    function submitForm() {
+    function sendEmail(event) {
+        event.preventDefault(); // 폼의 기본 제출 동작을 막습니다.
+
+        // 기존의 폼 유효성 검사 함수를 호출합니다.
         if (!fwrite_submit(document.getElementById('fwrite'))) {
-            return;
+            return; // 유효성 검사 실패 시 함수를 중단합니다.
         }
 
-        emailjs.sendForm('service_qmcu2xm', 'template_le70gei', '#fwrite')
+        emailjs.sendForm('service_m6lrxdj', 'template_le70gei', '#fwrite')
             .then(function(response) {
                console.log('SUCCESS!', response.status, response.text);
                alert('관심고객 등록이 성공적으로 완료되었습니다.');
-               window.location.reload();
+               window.location.reload(); // 성공 시 페이지를 새로고침합니다.
             }, function(error) {
                console.log('FAILED...', error);
-               alert('관심고객 등록에 실패했습니다. 다시 시도해주세요. 오류: ' + JSON.stringify(error));
+               alert('관심고객 등록에 실패했습니다. 다시 시도해주세요.');
             });
     }
-
-    // 버튼 클릭 시 폼 제출 함수 호출
-    $(document).ready(function() {
-        $('#manual_submit_btn').on('click', function() {
-            submitForm();
-        });
-    });
 </script>
 </body>
 </html>
