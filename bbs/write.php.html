@@ -57,7 +57,7 @@ var g5_cookie_domain = "";
 <script src="../js/fullpage.min.js?ver=250526025"></script>
 <script src="../js/common.js?ver=1250526025"></script>
 <script src="../js/wrest.js?ver=250526025"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body><div class="wrap subwrap">
 	<header class="sub">
@@ -190,7 +190,7 @@ var g5_cookie_domain = "";
 <!-- skin : customer --><script src="../js/address_ajax.js"></script>
 <div class="content">
 	<div class="inner">
-        <form name="fwrite" id="fwrite" onsubmit="sendEmail(event);" style="width:100%">
+        <form name="fwrite" id="fwrite" style="width:100%">
 			<input type="hidden" name="uid" value="2025111819481259">
 			<input type="hidden" name="w" value="">
 			<input type="hidden" name="bo_table" value="customer">
@@ -386,55 +386,7 @@ var g5_cookie_domain = "";
     </div>
 </div>
 
-<script>
-    function fwrite_submit(f) {
-
-        // 정규식 - 이메일 유효성 검사
-        var regEmail =
-            /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-
-
-        if ($.trim($("#wr_name").val()) == "") {
-            alert("이름을 입력하세요.");
-            $("#wr_name").focus()
-            return false;
-        }
-
-        if ($.trim($("#hp2").val()) == "") {
-            alert("휴대폰번호를 입력하세요.");
-            $("#hp2").focus()
-            return false;
-        }
-
-        if ($.trim($("#hp3").val()) == "") {
-            alert("휴대폰번호를 입력하세요.");
-            $("#hp3").focus()
-            return false;
-        }
-
-
-
-		if ($("input[name='wr_type']:checked").length < 1) {
-            alert('선호 타입을 선택해 주세요.');
-            $("input[name='wr_type']")[0].focus();
-	        return false;
-        }
-
-        if (f.agree1[0].checked == false) {
-            alert('개인정보 수집 및 이용에 동의해 주십시오.');
-            f.agree1[0].focus();
-            return false;
-        }
-
-        if (!$(":radio[name='wr_10']").is(":checked")) {
-            alert('마케팅 활용동의를 선택해 주세요.');
-            return false;
-        }
-
-
-        return true;
-    }
-</script>	<footer>
+	<footer>
         <div class="inner">
             <a href="javascript:;" class="top_btn"><img src="../images/top-btn.png" alt=""></a>
             <div class="f-logo"><img src="../images/f-logo.png" alt=""></div>
@@ -491,41 +443,69 @@ var g5_cookie_domain = "";
 
 
 <script type="text/javascript">
-    function sendEmail(event) {
-        event.preventDefault(); // 폼의 기본 제출 동작을 막습니다.
+// EmailJS를 공개 키로 초기화합니다.
+(function(){
+    emailjs.init({
+        publicKey: "ClFUoaELQQNLN8FPG",
+    });
+})();
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('fwrite');
+    // 제출 버튼은 "btn_area" 클래스 내의 첫 번째 버튼입니다.
+    const submitButton = form.querySelector('.btn_area .black button');
 
-        var form = document.getElementById('fwrite');
+    // 버튼 타입을 'submit'으로 명시적으로 설정합니다.
+    if (submitButton) {
+        submitButton.type = 'submit';
+    }
 
-        // 기존의 폼 유효성 검사 함수를 호출합니다.
-        if (!fwrite_submit(form)) {
-            return; // 유효성 검사 실패 시 함수를 중단합니다.
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // 기본 폼 제출을 막습니다.
+
+        // --- 유효성 검사 ---
+        // 1. 개인정보 동의 확인
+        const agreeRadios = document.querySelectorAll('input[name="agree1"]');
+        // 첫 번째 라디오 버튼은 '동의'입니다.
+        if (!agreeRadios[0] || !agreeRadios[0].checked) {
+            alert('개인정보의 수집 및 이용에 관한 동의에 동의하셔야 합니다.');
+            return;
         }
 
-        // EmailJS 초기화 (YOUR_PUBLIC_KEY를 실제 Public Key로 변경하세요)
-        emailjs.init("YOUR_PUBLIC_KEY");
+        // 2. 필수 필드 확인
+        const wrName = document.getElementById('wr_name').value.trim();
+        const hp2 = document.getElementById('hp2').value.trim();
+        const hp3 = document.getElementById('hp3').value.trim();
 
-        // 템플릿에 전달할 파라미터를 준비합니다.
-        var templateParams = {
-            wr_name: form.wr_name.value,
-            full_phone: form.hp1.value + '-' + form.hp2.value + '-' + form.hp3.value,
-            wr_5: form.wr_5.value,
-            wr_type: form.querySelector('input[name="wr_type"]:checked') ? form.querySelector('input[name="wr_type"]:checked').value : '선택 안 함',
-            agree1: form.agree1[0].checked ? '동의' : '동의하지 않음',
-            wr_10: form.querySelector('input[name="wr_10"]:checked') ? form.querySelector('input[name="wr_10"]:checked').value : '선택 안 함'
-        };
+        if (!wrName || !hp2 || !hp3) {
+            alert('이름과 휴대전화번호를 모두 입력해주세요.');
+            return;
+        }
+        // --- 유효성 검사 종료 ---
 
-        // EmailJS를 통해 이메일을 보냅니다.
-        // 'YOUR_SERVICE_ID'와 'YOUR_TEMPLATE_ID'를 실제 값으로 변경하세요.
-        emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
-            .then(function(response) {
-               console.log('SUCCESS!', response.status, response.text);
-               alert('관심고객 등록이 성공적으로 완료되었습니다.');
-               window.location.reload(); // 성공 시 페이지를 새로고침합니다.
-            }, function(error) {
-               console.log('FAILED...', error);
-               alert('관심고객 등록에 실패했습니다. 다시 시도해주세요.');
+        // 버튼 상태 업데이트
+        submitButton.textContent = '전송 중...';
+        submitButton.disabled = true;
+
+        const serviceID = 'service_qmcu2xm';
+        const templateID = 'template_le70gei';
+
+        // EmailJS를 사용하여 폼 데이터 전송
+        emailjs.sendForm(serviceID, templateID, this)
+            .then(() => {
+                alert('관심 고객 등록이 완료되었습니다.');
+                form.reset(); // 폼 필드 초기화
+            }, (err) => {
+                alert('오류가 발생했습니다. 다시 시도해주세요.\n' + JSON.stringify(err));
+            })
+            .finally(() => {
+                // 버튼 상태 복원
+                submitButton.textContent = '등록하기';
+                submitButton.disabled = false;
             });
-    }
+    });
+});
 </script>
 </body>
 </html>
