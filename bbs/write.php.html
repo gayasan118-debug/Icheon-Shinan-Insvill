@@ -491,19 +491,32 @@ var g5_cookie_domain = "";
 
 
 <script type="text/javascript">
-    (function(){
-        emailjs.init("ClFUoaELQQNLN8FPG");
-    })();
-
     function sendEmail(event) {
         event.preventDefault(); // 폼의 기본 제출 동작을 막습니다.
 
+        var form = document.getElementById('fwrite');
+
         // 기존의 폼 유효성 검사 함수를 호출합니다.
-        if (!fwrite_submit(document.getElementById('fwrite'))) {
+        if (!fwrite_submit(form)) {
             return; // 유효성 검사 실패 시 함수를 중단합니다.
         }
 
-        emailjs.sendForm('service_3vqirv9', 'template_a937uvw', '#fwrite')
+        // EmailJS 초기화 (YOUR_PUBLIC_KEY를 실제 Public Key로 변경하세요)
+        emailjs.init("YOUR_PUBLIC_KEY");
+
+        // 템플릿에 전달할 파라미터를 준비합니다.
+        var templateParams = {
+            wr_name: form.wr_name.value,
+            full_phone: form.hp1.value + '-' + form.hp2.value + '-' + form.hp3.value,
+            wr_5: form.wr_5.value,
+            wr_type: form.querySelector('input[name="wr_type"]:checked') ? form.querySelector('input[name="wr_type"]:checked').value : '선택 안 함',
+            agree1: form.agree1[0].checked ? '동의' : '동의하지 않음',
+            wr_10: form.querySelector('input[name="wr_10"]:checked') ? form.querySelector('input[name="wr_10"]:checked').value : '선택 안 함'
+        };
+
+        // EmailJS를 통해 이메일을 보냅니다.
+        // 'YOUR_SERVICE_ID'와 'YOUR_TEMPLATE_ID'를 실제 값으로 변경하세요.
+        emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
             .then(function(response) {
                console.log('SUCCESS!', response.status, response.text);
                alert('관심고객 등록이 성공적으로 완료되었습니다.');
