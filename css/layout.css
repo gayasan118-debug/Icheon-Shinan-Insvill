@@ -1024,3 +1024,205 @@ to{   transform:translateX(-50%); }
 .sub_location img { display: block; }
 
 .location_gray{background-color:#f8f8f8;padding: 70px 80px;}
+
+/* ================== 반응형 스타일 추가 ================== */
+
+/* 태블릿 & 중간 스크린 (1024px 이하) */
+@media screen and (max-width: 1024px) {
+    .wrap {
+        min-width: 100%; /* 최소 너비 제한 제거 */
+    }
+
+    .inner {
+        max-width: 95%; /* 내부 콘텐츠 너비 유연하게 조정 */
+    }
+    
+    .subwrap .content .inner {
+        max-width: 90%;
+    }
+
+    header .head_in {
+        min-width: auto;
+        padding: 0 20px;
+    }
+
+    header .menu {
+        display: none; /* 태블릿에서는 메뉴 숨김 (햄버거 메뉴 필요) */
+    }
+    
+    header, header:hover, header:hover .head_in {
+        height: 80px; /* 헤더 높이 고정 */
+    }
+    
+    header:hover::before {
+        opacity: 0;
+    }
+
+    .sub_top .sub_tit {
+        padding: 120px 0 80px;
+    }
+
+    .sub_menu .inner {
+        flex-direction: column;
+        height: auto;
+    }
+    .sub_menu .depth {
+        width: 100%;
+        padding-right: 0;
+    }
+    .sub_menu .depth ul li a {
+        padding: 0 20px;
+        font-size: 15px;
+    }
+
+    .content {
+        padding: 100px 0;
+    }
+
+    .bo_tbl table tr th, .bo_tbl table tr td {
+        padding: 20px 10px;
+        font-size: 16px;
+    }
+
+    .bo_tbl table tr th {
+        width: 120px; /* 레이블 너비 고정 */
+        padding-left: 10px;
+    }
+
+    .bo_tbl table tr td input[type="text"] {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .bo_tbl table tr td > div {
+        flex-wrap: wrap;
+    }
+    .bo_tbl table tr td select {
+        width: 30%;
+    }
+    .bo_tbl table tr td input[name="hp2"], .bo_tbl table tr td input[name="hp3"] {
+        width: 30%;
+    }
+
+    .agree > div {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    footer {
+        padding: 40px 20px;
+    }
+    footer .inner {
+        flex-direction: column;
+        gap: 30px;
+    }
+}
+
+/* 모바일 (768px 이하) */
+@media screen and (max-width: 768px) {
+    .sub_top .sub_tit {
+        padding: 100px 0 60px;
+    }
+    .sub_top .sub_tit dl dt p {
+        font-size: 30px;
+        letter-spacing: 0;
+    }
+    .sub_top .sub_tit dl dd {
+        font-size: 16px;
+    }
+
+    .sub_menu {
+        bottom: -20px;
+    }
+
+    .sub_menu .home, .sub_menu .depth ul li {
+        height: 50px;
+    }
+    .sub_menu .home a, .sub_menu .depth ul li a {
+        line-height: 50px;
+    }
+     .sub_menu .depth ul li:not(:last-of-type)::after {
+        top: 18px;
+     }
+
+    .content {
+        padding: 80px 0;
+    }
+
+    /* 폼 스타일 */
+    .bo_tbl table, .bo_tbl tbody, .bo_tbl tr {
+        display: block;
+        width: 100%;
+    }
+    .bo_tbl table th, .bo_tbl table td {
+        display: block;
+        width: 100% !important; /* 너비 전체 사용 */
+        text-align: left;
+        border-bottom: none;
+        box-sizing: border-box;
+    }
+    .bo_tbl table th {
+        padding: 20px 0 5px 0;
+        border-bottom: 1px solid #e5e5e5;
+    }
+    .bo_tbl table td {
+        padding: 10px 0 20px 0;
+        border-bottom: 1px solid #e5e5e5;
+    }
+     .bo_tbl table tr:last-child td {
+        border-bottom: none;
+     }
+
+    .bo_tbl table tr td > div {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .bo_tbl table tr td input[type="text"],
+    .bo_tbl table tr td select,
+    .bo_tbl table tr td textarea {
+        width: 100% !important;
+        box-sizing: border-box;
+        margin: 0;
+    }
+    .bo_tbl table tr td em {
+        display: none; /* '-' 문자 숨김 */
+    }
+
+    .terms table th, .terms table td {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        border-right: 1px solid #707070;
+    }
+    .terms table th {
+        border-bottom: none;
+        padding: 10px;
+        text-align: center;
+    }
+    .terms table td {
+         padding: 10px 15px;
+         text-align: left;
+    }
+
+    .agree > div {
+        padding: 15px;
+    }
+    .agree p {
+        font-size: 16px;
+    }
+    
+    .btn_area ul {
+        width: 100%;
+        display: flex;
+        gap: 10px;
+    }
+    .btn_area ul li {
+        flex: 1;
+        margin: 0;
+    }
+    .btn_area ul li button, .btn_area ul li a {
+        width: 100%;
+    }
+}
