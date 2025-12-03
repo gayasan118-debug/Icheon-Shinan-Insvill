@@ -263,27 +263,94 @@ header:hover .menu .gnb2{opacity:1;transform:none;;transition-delay:0.3s;}
     .main .location { height: auto; padding: 80px 0; }
     .main .location .txtBox .tTxt { font-size: 28px; position: relative; top: auto; margin-bottom: 20px; width: 100%; text-align: center; }
     .main .location .txtBox .centerTxt { font-size: 50px; position: relative; top: auto; left: auto; transform: none; margin: 30px 0; text-align: center; }
-    .main .location .txtBox .btmTxt { position: relative; right: auto; bottom: auto; text-align: center; width: 100%; font-size: 16px; line-height: 1.6; }
-    .main .location .subBgBox { position: relative; bottom: auto; margin-top: 50px; gap: 15px; transform: none; left: 0; width: 100%; }
-    .main .location .subBgBox div { width: 70px; height: 70px; }
+    /* Location Section - Mobile Slideshow Layout */
+    .main .location {
+        position: relative;
+        height: auto !important;
+        min-height: 600px; /* Ensure height for background */
+        padding: 0 !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-    /* Ensure images in .location section are visible on mobile */
+    /* Background Images */
+    .main .location .bgBox {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        z-index: 1;
+    }
     .main .location .bgBox img { 
-        opacity: 1 !important; 
-        scale: 1 !important; 
-        position: relative !important; /* Reset position */
-        left: auto !important;
-        top: auto !important;
-        width: 100% !important; /* Ensure responsiveness */
-        height: auto !important; /* Ensure responsiveness */
-        object-fit: cover; /* Maintain aspect ratio */
+        position: absolute !important;
+        top: 0; left: 0;
+        width: 100% !important; 
+        height: 100% !important;
+        object-fit: cover;
+        opacity: 0 !important; /* Hide by default */
+        transition: opacity 1s ease-in-out;
+        scale: 1 !important;
+        transform: none !important;
+    }
+    .main .location .bgBox img.active {
+        opacity: 1 !important; /* Show active image */
+    }
+
+    /* Text Container */
+    .main .location .txtBoxWrap {
+        position: relative;
+        z-index: 2;
+        width: 90%;
+        pointer-events: none; /* Let clicks pass through if needed */
+    }
+
+    /* Active Text Box */
+    .main .location .txtBox {
+        display: none; /* Hide inactive text boxes */
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+        padding: 40px 20px;
+        border-radius: 15px;
+        text-align: center;
+        pointer-events: auto;
+    }
+    .main .location .txtBox.active {
+        display: block; /* Show active text box */
+    }
+
+    /* Reset Text Positions & Styles */
+    .main .location .txtBox .tTxt,
+    .main .location .txtBox .centerTxt,
+    .main .location .txtBox .btmTxt {
+        position: relative !important;
+        top: auto !important; left: auto !important; right: auto !important; bottom: auto !important;
+        transform: none !important;
+        text-align: center;
+        margin: 0;
+        width: 100%;
     }
     
-    /* Ensure text in .location section is visible on mobile */
+    .main .location .txtBox .tTxt { font-size: 24px; margin-bottom: 10px; }
+    .main .location .txtBox .centerTxt { font-size: 50px; margin: 20px 0; }
+    .main .location .txtBox .btmTxt { font-size: 16px; line-height: 1.5; }
+
+    /* Ensure text spans are visible */
     .main .location .txtBox span {
         opacity: 1 !important;
         transform: none !important;
     }
+
+    /* Pagination/Indicators */
+    .main .location .subBgBox { 
+        position: absolute; 
+        bottom: 30px; 
+        left: 50%; 
+        transform: translateX(-50%); 
+        margin-top: 0; 
+        gap: 15px; 
+        z-index: 3;
+        width: auto;
+    }
+    .main .location .subBgBox div { width: 50px; height: 50px; }
+
 
 
     .main .brand { height: auto; padding: 80px 0; }
