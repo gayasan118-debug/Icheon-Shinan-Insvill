@@ -152,14 +152,16 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
         height: 100vh; 
         background: #fff !important; 
         z-index: 10001; /* Above header (1001), Below button (10002) */
-        transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        transition: right 0.4s ease-in-out; /* Simplified transition */
         padding-top: 80px; 
         box-sizing: border-box; 
         overflow-y: auto;
+        opacity: 1 !important; /* Force opacity */
+        visibility: visible !important; /* Force visibility */
     }
     .mobile_menu_container.active { 
         right: 0 !important; /* Slide in */
-        top: 0 !important; /* Ensure top stays 0 */
+        top: 0 !important; 
     } 
 
     /* Mobile Menu Styling */
