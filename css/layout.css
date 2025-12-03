@@ -162,16 +162,17 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
         top: 0;
         right: -100%; /* Hidden on the right */
         left: auto;
-        width: 100%; 
+        width: 70% !important; /* Adjusted to approx 2/3 width */
         height: 100vh; 
         background: #fff !important; 
         z-index: 10001; /* Above header (1001), Below button (10002) */
-        transition: right 0.4s ease-in-out; /* Simplified transition */
+        transition: right 0.4s ease-in-out; 
         padding-top: 80px; 
         box-sizing: border-box; 
         overflow-y: auto;
-        opacity: 1 !important; /* Force opacity */
-        visibility: visible !important; /* Force visibility */
+        opacity: 1 !important; 
+        visibility: visible !important; 
+        box-shadow: -5px 0 15px rgba(0,0,0,0.15); /* Added shadow */
     }
     .mobile_menu_container.active { 
         right: 0 !important; /* Slide in */
@@ -182,23 +183,23 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
     .mobile_menu_container ul { 
         display: flex !important; 
         flex-direction: column !important; 
-        padding: 0 20px; 
+        padding: 0 !important; /* Reset container padding */
         margin: 0 !important;
-        background-color: #fff !important; /* Ensure background is white */
+        background-color: #fff !important; 
     }
     .mobile_menu_container li { 
         display: block !important; 
         width: 100% !important; 
         float: none !important; 
-        border-bottom: 1px solid #eee; 
+        border-bottom: 1px solid #f1f1f1; 
     }
     .mobile_menu_container > ul > li > a { 
         display: flex !important; 
         width: 100% !important; 
         font-size: 18px; 
         font-weight: 600; 
-        color: #333 !important; /* Force black text color */
-        padding: 20px 0; 
+        color: #333 !important; 
+        padding: 20px 25px; /* Increased padding */
         justify-content: space-between; 
         align-items: center; 
         position: relative; 
@@ -212,12 +213,11 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
     .mobile_menu_container > ul > li > a::after { 
         content: ''; 
         display: block; 
-        width: 12px; 
-        height: 12px; 
+        width: 10px; 
+        height: 10px; 
         border-top: 2px solid #333; 
         border-right: 2px solid #333; 
         transform: rotate(135deg); 
-        margin-right: 10px; 
         transition: 0.3s; 
         margin-top: -5px;
     }
@@ -229,25 +229,24 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
     /* Mobile Sub Menu */
     .mobile_menu_container .gnb2 { 
         display: none; 
-        background: #f7f7f7; 
-        padding: 15px 0 !important; 
-        margin-bottom: 15px; 
-        border-radius: 8px; 
+        background: #f9f9f9; /* Slightly distinct background */
+        padding: 10px 0 !important; 
+        margin-bottom: 0; 
         border-bottom: none !important; 
     }
     .mobile_menu_container .gnb2 li { 
         border-bottom: none !important; 
-        padding: 0 20px; 
+        padding: 0; 
     }
     .mobile_menu_container .gnb2 li a { 
         display: block !important;
         font-size: 15px; 
-        color: #666; 
-        padding: 10px 0; 
+        color: #555 !important; 
+        padding: 12px 25px 12px 40px; /* Indented padding */
         font-weight: 400; 
         justify-content: flex-start;
     }
-    .mobile_menu_container .gnb2 li a::after { content: none; } /* No arrow for sub-items */
+    .mobile_menu_container .gnb2 li a::after { content: none; }
 
     .section, .fp-section, .fp-tableCell { height: auto !important; padding: 60px 0 !important; display: block !important; }
     
