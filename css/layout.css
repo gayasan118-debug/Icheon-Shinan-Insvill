@@ -41,15 +41,19 @@ header .rig .tel a { text-decoration: none; color: inherit; display: block; }
 header .rig .tel p{padding-left:22px;color:#fff;font-family:"Jost";font-size:20px;font-weight:600;background:url(../images/h-tell.png) no-repeat left 70% / 16px 16px;transition:0.3s;display: flex;align-items: center; gap: 5px;}
 header .rig .tel p strong{font-size:25px;font-weight:600;}
 .mobile_menu_btn { display: none; }
-header:hover{box-shadow: 5px 5px 6.93px 0.07px rgb(0 0 0 / 10%);background:#fff;}
-header:hover h1 a {background: url(../images/logo-active.png) no-repeat center;background-size: contain;}
-header:hover,
-header:hover .head_in {height:330px;}
-header:hover::before{opacity:1;}
-header:hover .menu .gnb1 > a{color:#222;}
-header:hover .rig .tel p{color:#222;background-image:url(../images/h-tell-active.png);}
-header:hover .menu .gnb1{max-width:200px;}
-header:hover .menu .gnb2{opacity:1;transform:none;;transition-delay:0.3s;}
+
+@media screen and (min-width: 1025px) {
+    header:hover{box-shadow: 5px 5px 6.93px 0.07px rgb(0 0 0 / 10%);background:#fff;}
+    header:hover h1 a {background: url(../images/logo-active.png) no-repeat center;background-size: contain;}
+    header:hover,
+    header:hover .head_in {height:330px;}
+    header:hover::before{opacity:1;}
+    header:hover .menu .gnb1 > a{color:#222;}
+    header:hover .rig .tel p{color:#222;background-image:url(../images/h-tell-active.png);}
+    header:hover .menu .gnb1{max-width:200px;}
+    header:hover .menu .gnb2{opacity:1;transform:none;;transition-delay:0.3s;}
+}
+
 .fp-viewing-1 header h1 a
  {background: url(../images/logo-active.png) no-repeat center;background-size: contain;}
 .fp-viewing-1 header .menu .gnb1 > a,
