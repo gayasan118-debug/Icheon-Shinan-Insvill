@@ -47,7 +47,7 @@ var g5_cookie_domain = "";
 ul li {list-style:none;}
 
 /*popup*/
-.popup{position:absolute;left:0;top:0;z-index:100;width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-direction: column;}
+.popup{position:fixed;left:0;top:0;z-index:10000;width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-direction: column;}
 .popup .dim{position:absolute;left:0;top:0;width:100%;height:100%;background-color:rgba(0,0,0,0.6);z-index:-1;transform:translate(0,-100%);transition:1s;}
 .pop_sd{position:relative;z-index:1;text-align:center;overflow: hidden;transform:translate(0,-180%);transition:1s; transition-delay: 1s;}
 .pop_sd .swiper-wrapper{height:auto;}
@@ -88,69 +88,7 @@ ul li {list-style:none;}
 </div>
 
 <script>
-$(function() {
-	setTimeout(function() {
-		$('.popup').addClass('on');
-	}, 4500);
-
-	/*
-	$(".pop_close button").click(function() {
-        $(this).closest('li').remove();
-		if ($('.pop_sd ul li').length < 1) {
-			$('.popup').removeClass('on');
-		}
-    });
-	*/
-
-    $(".pop_close").click(function() {
-		$('.popup').removeClass('on');
-        var id = $(this).attr('class').split(' ');
-        var ck_name = id[1];
-        var exp_time = parseInt(id[2]);
-        $("#"+id[1]).css("display", "none");
-        set_cookie(ck_name, 1, exp_time, g5_cookie_domain);
-    });
-    $('.hd_pops_close').click(function() {
-        var idb = $(this).attr('class').split(' ');
-        $('#'+idb[1]).css('display','none');
-    });
-    $("#hd").css("z-index", 1000);
-
-	/*
-	const popups = document.querySelector('li[id^="hd_pops_"]');
-	popups.forEach(popup => {
-		const nwId = popup.dataset.id; // 고유한 ID 추출
-		const storageKey = `dontShowUntil_${nwId}`; // 고유한 로컬스토리지 키
-		const dontShowUntil = localStorage.getItem(storageKey);
-
-		// 저장된 시간 비교 후 제거
-		if (dontShowUntil && new Date().getTime() < parseInt(dontShowUntil)) {
-			popup.remove();
-			return;
-		}
-
-		const closeBtn = popup.querySelector('.closePopup');
-		const chkBox = popup.querySelector('.dontShow');
-
-		closeBtn.addEventListener('click', () => {
-			// 체크되어 있으면 해당 팝업만 localStorage에 저장
-			if (chkBox.checked) {
-				const expireTime = new Date().getTime() + 24 * 60 * 60 * 1000; // 24시간
-				localStorage.setItem(storageKey, expireTime);
-			}
-			popup.remove(); // 해당 팝업만 닫음
-		});
-	});
-	*/
-
-	if ($('.pop_sd ul li').length < 1) {
-		$('.popup').remove();
-	}
-
-});
-</script>
-
-<script>
+    // Helper functions for cookie management, copied to be self-contained
     function setCookie(name, value, hours) {
         const d = new Date();
         d.setTime(d.getTime() + (hours * 60 * 60 * 1000));
@@ -168,22 +106,38 @@ $(function() {
         return null;
     }
 
-    window.addEventListener("DOMContentLoaded", function () {
-        const popup = document.getElementById("pop");
-        const dontShowCheckbox = document.querySelector(".dontShow");
-        const closeBtn = document.querySelector(".closePopup");
+$(function() {
+    const $popup = $('#pop');
+    const $closeBtn = $popup.find('.closePopup');
+    const $dontShowCheckbox = $popup.find('.dontShow');
 
-        if (getCookie("hidePopup") === "yes") {
-            popup.style.display = "none";
+    // Check cookie on load and hide if set
+    if (getCookie("hidePopup") === "yes") {
+        $popup.hide();
+        return; // Don't show popup if cookie is set
+    }
+
+    // Show popup after 1 second
+    setTimeout(function() {
+        $popup.addClass('on');
+    }, 1000); // 1 second delay
+
+    // Close button click handler using event delegation
+    $(document).on('click', '.closePopup', function() {
+        if ($dontShowCheckbox.is(':checked')) {
+            setCookie("hidePopup", "yes", 24); // Set cookie for 24 hours
         }
-
-        closeBtn?.addEventListener("click", function () {
-            if (dontShowCheckbox?.checked) {
-            setCookie("hidePopup", "yes", 24); 
-            }
-            popup.style.display = "none";
-        });
+        $popup.removeClass('on');
+        setTimeout(function() { // Hide completely after transition if 'on' class has transition
+            $popup.hide();
+        }, 2000); // Adjusted delay to match CSS transition duration
     });
+    
+    // Original logic for removing popup if no list items exist
+    if ($('.pop_sd ul li').length < 1) {
+		$popup.remove();
+	}
+});
 </script>
 
 
@@ -283,9 +237,10 @@ $(function() {
 			</div>
 			<div class="rig">
                 <div class="tel">
-                    <p><strong>1688-0458</strong></p>
+                    <a href="tel:1688-0458"><p><strong>1688-0458</strong></p></a>
 				</div>
 			</div>
+            <button class="mobile_menu_btn"><span></span><span></span><span></span></button>
 		</div>
 	</header>
 
@@ -990,6 +945,20 @@ $(window).load(function() {
 	</footer>
 </div>
 
+<div class="mobile_menu_container">
+</div>
+
+<div class="sticky_bottom_bar">
+    <a href="tel:1688-0458" class="call_btn">
+        <span class="icon">📞</span>
+        <span class="txt">전화상담</span>
+    </a>
+    <a href="bbs/write.php.html?bo_table=customer" class="reg_btn">
+        <span class="icon">📝</span>
+        <span class="txt">관심고객등록</span>
+    </a>
+</div>
+
 <script>
 	$(document).ready(function(){
 		setTimeout(function() {
@@ -1188,7 +1157,8 @@ $(window).load(function() {
 
 		//fullpage
 		$('#fullpage').fullpage({
-			scrollingSpeed: 1300,			
+			scrollingSpeed: 1300,
+            responsiveWidth: 1024,
 			afterLoad: function (anchorLink, index) {
 				if (index === 2) {                    
                     $('.premium').addClass('active');

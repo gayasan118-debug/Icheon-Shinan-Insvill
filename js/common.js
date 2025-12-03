@@ -72,9 +72,9 @@ function number_format(data)
     
     data = data + '';
 
-    var sign = data.match(/^[\+\-]/);
+    var sign = data.match(/^["+"-]/);
     if(sign) {
-        data = data.replace(/^[\+\-]/, "");
+        data = data.replace(/^["+"-]/, "");
     }
 
     len = data.length;
@@ -137,7 +137,7 @@ function del(href)
         var iev = -1;
         if (navigator.appName == 'Microsoft Internet Explorer') {
             var ua = navigator.userAgent;
-            var re = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
+            var re = new RegExp("MSIE ([0-9]{1,}[" . "0-9]{0,})");
             if (re.exec(ua) != null)
                 iev = parseFloat(RegExp.$1);
         }
@@ -793,3 +793,34 @@ function fn_winCheck(){
     
 	return false;	
 }
+
+$(function() {
+    // Mobile Menu Initialization
+    // Check if mobile_menu_container exists and is empty, then populate it.
+    var $mobileMenuContainer = $('.mobile_menu_container');
+    if ($mobileMenuContainer.length > 0 && $mobileMenuContainer.children().length === 0 && $('header .menu > ul').length > 0) {
+        var $menuContent = $('header .menu > ul').clone();
+        $mobileMenuContainer.append($menuContent);
+    }
+
+    // Event handler for mobile menu button
+    $(document).on('click', '.mobile_menu_btn', function(){
+        $('.mobile_menu_container').toggleClass('active');
+        $(this).toggleClass('active');
+
+        if ($('.mobile_menu_container').hasClass('active')) {
+            $('body').css('overflow', 'hidden');
+        } else {
+            $('body').css('overflow', '');
+        }
+    });
+
+    // Event handler for mobile sub-menu toggling
+    $(document).on('click', '.mobile_menu_container .gnb1 > a', function(e){
+        if($(this).next('.gnb2').length > 0){
+            e.preventDefault();
+            $(this).parent('li').toggleClass('active'); // Toggle active class on parent li for arrow rotation
+            $(this).next('.gnb2').stop().slideToggle();
+        }
+    });
+});

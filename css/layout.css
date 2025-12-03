@@ -1,4 +1,4 @@
-﻿@charset "utf-8";
+@charset "utf-8";
 
 @import url('../css2');
 @import url('../css2-1');
@@ -33,11 +33,13 @@ header .menu .gnb1:hover > a > span:before{opacity:1;width:100%;}
 header .menu .gnb2 { margin-top: 25px; text-align: left; opacity: 0; transform: translate(0, 30px); transition: 0.4s; }
 header .menu .gnb2 li a{display: block;font-size: 14px;color: #999;padding-bottom:15px;letter-spacing: 0px;line-height: 1.3em;transition:0.3s;white-space:nowrap; text-align: center; font-weight: 400;}
 header .menu .gnb2 li a:hover{color:#2d3d7d;}
-header .rig{position:absolute;right:0;top:32px;display:flex;align-items:center;gap:0 20px;}
+header .rig{position:absolute;right:70px;top:32px;display:flex;align-items:center;gap:0 20px;}
 header .rig .open p { background-color: #c1985d; font-size: 18px; color: #fff; text-align: center; padding: 0 19px; height: 33px; border-radius: 16.5px; font-weight: 700; display: flex; align-items: center; }
 header .rig .open p span { display: inline-block; margin-bottom: 3px; }
+header .rig .tel a { text-decoration: none; color: inherit; display: block; }
 header .rig .tel p{padding-left:22px;color:#fff;font-family:"Jost";font-size:20px;font-weight:600;background:url(../images/h-tell.png) no-repeat left 70% / 16px 16px;transition:0.3s;display: flex;align-items: center; gap: 5px;}
 header .rig .tel p strong{font-size:25px;font-weight:600;}
+.mobile_menu_btn { display: none; }
 header:hover{box-shadow: 5px 5px 6.93px 0.07px rgb(0 0 0 / 10%);background:#fff;}
 header:hover h1 a {background: url(../images/logo-active.png) no-repeat center;background-size: contain;}
 header:hover,
@@ -54,6 +56,231 @@ header:hover .menu .gnb2{opacity:1;transform:none;;transition-delay:0.3s;}
 .fp-viewing-1 header .rig .tel p,
 .fp-viewing-5 header .rig .tel p{color:#222;background-image:url(../images/h-tell-active.png);}
 .fp-viewing-6 header{opacity:0;pointer-events:none;}
+
+
+/* Sticky Bottom Bar */
+.sticky_bottom_bar { display: none; }
+
+/* Mobile Menu Container - Default Hidden (Desktop) */
+.mobile_menu_container { display: none; }
+
+@media screen and (max-width: 1200px) {
+    .inner { width: 100%; padding: 0 20px; box-sizing: border-box; }
+    .inner.in_1400, .inner.in_1460 { width: 100%; }
+}
+
+@media screen and (max-width: 1024px) {
+    /* Sticky Bottom Bar */
+    .sticky_bottom_bar {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 60px;
+        z-index: 9999;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    }
+    .sticky_bottom_bar a {
+        display: flex;
+        flex: 1;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 700;
+        gap: 8px;
+    }
+    .sticky_bottom_bar .call_btn {
+        background-color: #fff;
+        color: #213257;
+        border-top: 1px solid #eee;
+    }
+    .sticky_bottom_bar .reg_btn {
+        background-color: #213257;
+        color: #fff;
+    }
+    .sticky_bottom_bar .icon {
+        font-size: 18px;
+    }
+    
+    /* Adjust footer padding */
+    footer { padding-bottom: 80px !important; }
+
+    /* Layout & Typography */
+    .wrap { min-width: 100%; overflow-x: hidden; }
+    img { max-width: 100%; height: auto; }
+    
+    /* Header Mobile */
+    header { height: 60px; background: #fff; border-bottom: 1px solid #eee; transition: none; position: fixed; top: 0; width: 100%; z-index: 1001; }
+    header:hover { height: 60px; }
+    header .head_in { height: 60px; min-width: 100%; overflow: visible; }
+    header h1 { top: 50%; transform: translateY(-50%); left: 20px; margin: 0; }
+    header h1 a { width: 140px; height: 24px; background-size: contain; background-image: url('../images/logo-active.png') !important; } 
+    
+    /* Hide PC Menu */
+    header .menu { display: none !important; }
+
+    /* Mobile Header Right Section */
+    header .rig { display: block; position: absolute; top: 50%; transform: translateY(-50%); right: 60px; }
+    header .rig .open { display: none; }
+    header .rig .tel p { color: #333; font-size: 15px; font-weight: 700; padding-left: 22px; background: url('../images/h-tell-active.png') no-repeat left center / 16px 16px; }
+    header .rig .tel p strong { color: #333; font-size: 16px; }
+
+    /* Mobile Menu Button */
+    .mobile_menu_btn { display: block !important; position: absolute; top: 50%; transform: translateY(-50%); right: 20px; z-index: 10002; width: 30px; height: 30px; background: none; border: none; margin: 0; cursor: pointer; }
+    .mobile_menu_btn span { display: block; width: 100%; height: 3px; background-color: #333 !important; margin: 6px 0; transition: 0.3s; }
+    
+    /* Mobile Menu Button Animation */
+    .mobile_menu_btn.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+    .mobile_menu_btn.active span:nth-child(2) { opacity: 0; }
+    .mobile_menu_btn.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -7px); }
+
+    /* Mobile Menu Container - Slide Down */
+    .mobile_menu_container { 
+        display: block !important; /* Show block inside media query but control visibility with position */
+        position: fixed; 
+        top: -100%; /* Hidden initially above the viewport */
+        left: 0;
+        width: 100%; 
+        height: 100vh; 
+        background: #fff; 
+        z-index: 10000; 
+        transition: top 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth slide down animation */
+        padding-top: 80px; 
+        box-sizing: border-box; 
+        overflow-y: auto;
+    }
+    .mobile_menu_container.active { 
+        top: 0 !important; /* Slide in to view */
+    } 
+
+    /* Mobile Menu Styling */
+    .mobile_menu_container ul { 
+        display: flex !important; 
+        flex-direction: column !important; 
+        padding: 0 20px; 
+        margin: 0 !important;
+    }
+    .mobile_menu_container li { 
+        display: block !important; 
+        width: 100% !important; 
+        float: none !important; 
+        border-bottom: 1px solid #eee; 
+    }
+    .mobile_menu_container > ul > li > a { 
+        display: flex !important; 
+        width: 100% !important; 
+        font-size: 18px; 
+        font-weight: 600; 
+        color: #333; 
+        padding: 20px 0; 
+        justify-content: space-between; 
+        align-items: center; 
+        position: relative; 
+        box-sizing: border-box;
+    }
+    /* Arrow icon for sub-menu */
+    .mobile_menu_container > ul > li > a::after { 
+        content: ''; 
+        display: block; 
+        width: 12px; 
+        height: 12px; 
+        border-top: 2px solid #333; 
+        border-right: 2px solid #333; 
+        transform: rotate(135deg); 
+        margin-right: 10px; 
+        transition: 0.3s; 
+        margin-top: -5px;
+    }
+    .mobile_menu_container > ul > li.active > a::after { 
+        transform: rotate(-45deg); 
+        margin-top: 5px; 
+    }
+    
+    /* Mobile Sub Menu */
+    .mobile_menu_container .gnb2 { 
+        display: none; 
+        background: #f7f7f7; 
+        padding: 15px 0 !important; 
+        margin-bottom: 15px; 
+        border-radius: 8px; 
+        border-bottom: none !important; 
+    }
+    .mobile_menu_container .gnb2 li { 
+        border-bottom: none !important; 
+        padding: 0 20px; 
+    }
+    .mobile_menu_container .gnb2 li a { 
+        display: block !important;
+        font-size: 15px; 
+        color: #666; 
+        padding: 10px 0; 
+        font-weight: 400; 
+        justify-content: flex-start;
+    }
+    .mobile_menu_container .gnb2 li a::after { content: none; } /* No arrow for sub-items */
+
+    .section, .fp-section, .fp-tableCell { height: auto !important; padding: 60px 0 !important; display: block !important; }
+    
+    /* Content Adjustments for Mobile */
+    .mv { height: 100vh !important; min-height: 600px; }
+    .mv .mvSlide .item .bg { width: 100%; height: 100%; left: 0; top: 0; margin: 0; }
+    .mv .mvBgWrap .bg02 { width: 100%; left: 0; margin: 0; margin-left: 0; }
+    .mv .mvSlide .item .txtBox { width: 90%; left: 50%; transform: translate(-50%, -50%); text-align: center; top: 50%; }
+    .mv .mvSlide .item .txtBox img { max-width: 80%; }
+    .mv .mvSlide .item .bg img { object-fit: cover; }
+
+    .main .premium { flex-direction: column; padding: 60px 0; height: auto; align-items: center; }
+    .main .premiumTit { position: relative; left: 0; top: 0; transform: none; text-align: center; margin-bottom: 40px; width: 100%; }
+    .main .premiumTit p em { position: relative; left: auto; bottom: auto; display: inline-block; vertical-align: bottom; margin-left: 5px; }
+    .main .premium .premiumSlide { width: 100%; padding: 0 20px; box-sizing: border-box; margin-top: 0; }
+    .main .premium .item { width: 100%; height: auto; margin: 0 auto; display: block; }
+    .main .premium .item .subItem { width: 100%; height: auto; aspect-ratio: 3/4; margin: 0 auto; }
+    .main .premium .swiper-slide-active .subItem { width: 100%; }
+
+    .main .location { height: auto; padding: 80px 0; }
+    .main .location .txtBox .tTxt { font-size: 28px; position: relative; top: auto; margin-bottom: 20px; width: 100%; text-align: center; }
+    .main .location .txtBox .centerTxt { font-size: 50px; position: relative; top: auto; left: auto; transform: none; margin: 30px 0; text-align: center; }
+    .main .location .txtBox .btmTxt { position: relative; right: auto; bottom: auto; text-align: center; width: 100%; font-size: 16px; line-height: 1.6; }
+    .main .location .subBgBox { position: relative; bottom: auto; margin-top: 50px; gap: 15px; transform: none; left: 0; width: 100%; }
+    .main .location .subBgBox div { width: 70px; height: 70px; }
+
+    .main .brand { height: auto; padding: 80px 0; }
+    .main .brandNumBox { flex-direction: column; gap: 40px; margin: 50px 0; }
+    .main .brandNumBox::after { width: 80%; height: 1px; transform: translate(-50%, 0); }
+    .main .brand.active .brandNumBox::after { height: 1px; width: 80%; } 
+    .main .brandImgBox img { height: 150px; width: auto; }
+    .main .brandTxtBox .tit { font-size: 22px; }
+    .main .brandTxtBox .tit b { font-size: 26px; }
+
+    .main .contact { height: auto; padding: 80px 0; }
+    .main .contactMapBox { flex-direction: column; gap: 50px; margin-top: 40px; }
+    .main .contactMapBox > div { width: 100%; }
+    
+    footer { padding: 50px 20px; height: auto; }
+    footer .inner { flex-direction: column; gap: 30px; align-items: center; text-align: center; }
+    footer .inner .f-alt-t { justify-content: center; }
+    footer .inner .f-alt-c .custom { flex-direction: column; align-items: center; gap: 5px; }
+    footer .inner .f-right { margin: 0; }
+    footer .top_btn { position: relative; right: auto; top: auto; margin-bottom: 20px; display: inline-block; }
+
+    /* Sub Page */
+    .sub_top .sub_tit { padding: 120px 0 60px; }
+    .sub_top .sub_tit dl dt p { font-size: 32px; }
+    .sub_menu .inner { flex-direction: column; }
+    .sub_menu .home { display: none; }
+    .sub_menu .depth { width: 100%; padding: 0; }
+    .sub_menu .depth ul { flex-wrap: wrap; }
+    .sub_menu .depth ul li { width: 50%; border-bottom: 1px solid rgba(255,255,255,0.1); height: 50px; line-height: 50px; }
+    .sub_menu .depth ul li a { line-height: 50px; padding: 0 10px; font-size: 15px; }
+    
+    .content { padding: 60px 0; }
+    .sub_tbl table, .sub_tbl tbody, .sub_tbl tr, .sub_tbl th, .sub_tbl td { display: block; width: 100%; }
+    .sub_tbl table th { text-align: left; padding-bottom: 5px; border-bottom: none; margin-top: 15px; }
+    .sub_tbl table th::after { display: none; }
+    .sub_tbl table td { padding-top: 5px; padding-left: 0; border-bottom: 1px solid #eee; }
+}
 @media all and (max-width:1600px){
 	header .menu > ul{margin-right:0;}
 }
@@ -317,11 +544,48 @@ to{   transform:translateX(-50%); }
 .bo_tbl{margin-bottom: 60px;}
 .bo_tbl table{width: 100%;border-top: 1px solid #333;}
 .bo_tbl table tr th{font-size: 17px;font-weight: 400;color: #333;padding: 30px 0 30px 40px;text-align: left;border-bottom: 1px solid #e5e5e5;}
-.bo_tbl table tr td{border-bottom: 1px solid #e5e5e5; v}
+.bo_tbl table tr td{border-bottom: 1px solid #e5e5e5;}
 .bo_tbl table tr td > div{display: flex;align-items: center;}
-.bo_tbl table tr td input[type="text"]{background-color: #f0f0f0;height: 50px;border: none;font-size: 16px;color: #999;padding: 0 20px;outline: none;}
-.bo_tbl table tr td select{width: 227px;height: 50px;border: none;font-size: 16px;color: #999;padding: 0 20px;-webkit-appearance: none;-moz-appearance: none;appearance: none;background: #f0f0f0 url(../images/select-icon.png) no-repeat 90% 52%;outline: none;}
+.bo_tbl table tr td input[type="text"],
+.bo_tbl table tr td select,
+.bo_tbl table tr td textarea{ /* textarea도 포함하여 통일성 유지 */
+    background-color: #f0f0f0;
+    height: 50px;
+    border: none;
+    font-size: 16px;
+    color: #999;
+    padding: 0 20px;
+    outline: none;
+    width: 100%; /* 기본적으로 100%로 설정 */
+    max-width: 530px; /* 데스크톱 최대 너비 제한 */
+    box-sizing: border-box; /* 패딩 포함하여 너비 계산 */
+}
+/* textarea는 높이가 고정되어 있으므로 height: 150px;를 유지하기 위해 별도 처리 */
+.bo_tbl table tr td textarea {
+    height: 150px;
+    resize: vertical; /* 세로 방향으로만 크기 조절 허용 */
+}
+.bo_tbl table tr td select{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: #f0f0f0 url(../images/select-icon.png) no-repeat 90% 52%;
+}
 .bo_tbl table tr td select ~ select{margin-left: 10px;}
+/* 전화번호 필드 flexbox 설정 */
+.bo_tbl table tr td > div#phone-fields { /* ID 추가 예정 */
+    gap: 5px; /* 필드 사이 간격 */
+}
+.bo_tbl table tr td > div#phone-fields select,
+.bo_tbl table tr td > div#phone-fields input[type="text"] {
+    flex: 1; /* flex 아이템으로 공간 균등 분배 */
+    max-width: none; /* 부모 flex 컨테이너에 맞게 확장 */
+    padding: 0 10px; /* 패딩 조절 */
+}
+.bo_tbl table tr td > div#phone-fields em {
+    flex-shrink: 0; /* 하이픈 축소 방지 */
+    margin: 0 2px; /* 기존 margin 제거 후 간격 조정 */
+}
 .bo_tbl table tr td em{font-size: 16px;color: #666;margin: 0 10px;}
 .bo_tbl table tr td .personnel label ~ label{margin-left: 20px;}
 .bo_tbl table tr td .personnel label span{margin-left: 5px;}
@@ -1025,204 +1289,3 @@ to{   transform:translateX(-50%); }
 
 .location_gray{background-color:#f8f8f8;padding: 70px 80px;}
 
-/* ================== 반응형 스타일 추가 ================== */
-
-/* 태블릿 & 중간 스크린 (1024px 이하) */
-@media screen and (max-width: 1024px) {
-    .wrap {
-        min-width: 100%; /* 최소 너비 제한 제거 */
-    }
-
-    .inner {
-        max-width: 95%; /* 내부 콘텐츠 너비 유연하게 조정 */
-    }
-    
-    .subwrap .content .inner {
-        max-width: 90%;
-    }
-
-    header .head_in {
-        min-width: auto;
-        padding: 0 20px;
-    }
-
-    header .menu {
-        display: none; /* 태블릿에서는 메뉴 숨김 (햄버거 메뉴 필요) */
-    }
-    
-    header, header:hover, header:hover .head_in {
-        height: 80px; /* 헤더 높이 고정 */
-    }
-    
-    header:hover::before {
-        opacity: 0;
-    }
-
-    .sub_top .sub_tit {
-        padding: 120px 0 80px;
-    }
-
-    .sub_menu .inner {
-        flex-direction: column;
-        height: auto;
-    }
-    .sub_menu .depth {
-        width: 100%;
-        padding-right: 0;
-    }
-    .sub_menu .depth ul li a {
-        padding: 0 20px;
-        font-size: 15px;
-    }
-
-    .content {
-        padding: 100px 0;
-    }
-
-    .bo_tbl table tr th, .bo_tbl table tr td {
-        padding: 20px 10px;
-        font-size: 16px;
-    }
-
-    .bo_tbl table tr th {
-        width: 120px; /* 레이블 너비 고정 */
-        padding-left: 10px;
-    }
-
-    .bo_tbl table tr td input[type="text"] {
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    .bo_tbl table tr td > div {
-        flex-wrap: wrap;
-    }
-    .bo_tbl table tr td select {
-        width: 30%;
-    }
-    .bo_tbl table tr td input[name="hp2"], .bo_tbl table tr td input[name="hp3"] {
-        width: 30%;
-    }
-
-    .agree > div {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-    }
-    
-    footer {
-        padding: 40px 20px;
-    }
-    footer .inner {
-        flex-direction: column;
-        gap: 30px;
-    }
-}
-
-/* 모바일 (768px 이하) */
-@media screen and (max-width: 768px) {
-    .sub_top .sub_tit {
-        padding: 100px 0 60px;
-    }
-    .sub_top .sub_tit dl dt p {
-        font-size: 30px;
-        letter-spacing: 0;
-    }
-    .sub_top .sub_tit dl dd {
-        font-size: 16px;
-    }
-
-    .sub_menu {
-        bottom: -20px;
-    }
-
-    .sub_menu .home, .sub_menu .depth ul li {
-        height: 50px;
-    }
-    .sub_menu .home a, .sub_menu .depth ul li a {
-        line-height: 50px;
-    }
-     .sub_menu .depth ul li:not(:last-of-type)::after {
-        top: 18px;
-     }
-
-    .content {
-        padding: 80px 0;
-    }
-
-    /* 폼 스타일 */
-    .bo_tbl table, .bo_tbl tbody, .bo_tbl tr {
-        display: block;
-        width: 100%;
-    }
-    .bo_tbl table th, .bo_tbl table td {
-        display: block;
-        width: 100% !important; /* 너비 전체 사용 */
-        text-align: left;
-        border-bottom: none;
-        box-sizing: border-box;
-    }
-    .bo_tbl table th {
-        padding: 20px 0 5px 0;
-        border-bottom: 1px solid #e5e5e5;
-    }
-    .bo_tbl table td {
-        padding: 10px 0 20px 0;
-        border-bottom: 1px solid #e5e5e5;
-    }
-     .bo_tbl table tr:last-child td {
-        border-bottom: none;
-     }
-
-    .bo_tbl table tr td > div {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-    }
-    .bo_tbl table tr td input[type="text"],
-    .bo_tbl table tr td select,
-    .bo_tbl table tr td textarea {
-        width: 100% !important;
-        box-sizing: border-box;
-        margin: 0;
-    }
-    .bo_tbl table tr td em {
-        display: none; /* '-' 문자 숨김 */
-    }
-
-    .terms table th, .terms table td {
-        display: block;
-        width: 100%;
-        box-sizing: border-box;
-        border-right: 1px solid #707070;
-    }
-    .terms table th {
-        border-bottom: none;
-        padding: 10px;
-        text-align: center;
-    }
-    .terms table td {
-         padding: 10px 15px;
-         text-align: left;
-    }
-
-    .agree > div {
-        padding: 15px;
-    }
-    .agree p {
-        font-size: 16px;
-    }
-    
-    .btn_area ul {
-        width: 100%;
-        display: flex;
-        gap: 10px;
-    }
-    .btn_area ul li {
-        flex: 1;
-        margin: 0;
-    }
-    .btn_area ul li button, .btn_area ul li a {
-        width: 100%;
-    }
-}
