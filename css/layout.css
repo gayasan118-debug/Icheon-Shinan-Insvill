@@ -232,6 +232,21 @@ header:hover .menu .gnb2{opacity:1;transform:none;;transition-delay:0.3s;}
     .mv .mvSlide .item .txtBox img { max-width: 80%; }
     .mv .mvSlide .item .bg img { object-fit: cover; }
 
+    /* Ensure image containers are responsive */
+    .mv .mvSlide .item .bg,
+    .mv .mvBgWrap .bg02 {
+        position: relative; /* Change from absolute to relative or keep absolute and reset coords */
+        width: 100% !important; /* Override fixed desktop width */
+        height: 100% !important; /* Override fixed desktop height */
+        left: auto !important;
+        top: auto !important;
+        margin: 0 !important; /* Reset negative margins */
+        transform: none !important; /* Reset transform scale (if any) */
+    }
+
+    /* Adjust other .mv elements that might be affected by repositioning */
+    .mv .mvSlide .item .bg { overflow: hidden; } /* Keep overflow hidden for background images */
+
     .main .premium { flex-direction: column; padding: 60px 0; height: auto; align-items: center; }
     .main .premiumTit { position: relative; left: 0; top: 0; transform: none; text-align: center; margin-bottom: 40px; width: 100%; }
     .main .premiumTit p em { position: relative; left: auto; bottom: auto; display: inline-block; vertical-align: bottom; margin-left: 5px; }
