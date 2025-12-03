@@ -2,10 +2,11 @@
 
 @import url('../css2');
 @import url('../css2-1');
-@font-face {font-family:'Thesignature';font-weight:400;src:url('../font/Thesignature.otf'), url('../font/Thesignature.woff');}
 @import url('../css2-2');
 @import url('../gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100..900;1,100..900&display=swap');
+
+@font-face {font-family:'Thesignature';font-weight:400;src:url('../font/Thesignature.otf'), url('../font/Thesignature.woff');}
 
 
 html,body{height: 100%;font-family: "Noto Sans KR";}

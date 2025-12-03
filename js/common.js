@@ -796,11 +796,16 @@ function fn_winCheck(){
 
 $(function() {
     // Mobile Menu Initialization
-    // Check if mobile_menu_container exists and is empty, then populate it.
     var $mobileMenuContainer = $('.mobile_menu_container');
-    if ($mobileMenuContainer.length > 0 && $mobileMenuContainer.children().length === 0 && $('header .menu > ul').length > 0) {
-        var $menuContent = $('header .menu > ul').clone();
+    var $pcMenu = $('header .menu > ul');
+
+    if ($mobileMenuContainer.length > 0 && $pcMenu.length > 0) {
+        $mobileMenuContainer.empty(); // Clear any existing content (text nodes, etc.)
+        var $menuContent = $pcMenu.clone();
         $mobileMenuContainer.append($menuContent);
+        console.log("Mobile menu cloned successfully.");
+    } else {
+        console.error("Mobile menu container or PC menu not found.");
     }
 
     // Event handler for mobile menu button
@@ -809,7 +814,7 @@ $(function() {
         $(this).toggleClass('active');
 
         if ($('.mobile_menu_container').hasClass('active')) {
-            $('body').css('overflow', 'hidden');
+            $('body').css('overflow', 'hidden'); // Prevent body scrolling
         } else {
             $('body').css('overflow', '');
         }
@@ -817,10 +822,18 @@ $(function() {
 
     // Event handler for mobile sub-menu toggling
     $(document).on('click', '.mobile_menu_container .gnb1 > a', function(e){
+        // If the clicked link has a sub-menu sibling
         if($(this).next('.gnb2').length > 0){
-            e.preventDefault();
-            $(this).parent('li').toggleClass('active'); // Toggle active class on parent li for arrow rotation
+            e.preventDefault(); // Prevent page navigation
+            
+            // Toggle active class on the parent li (for arrow rotation)
+            $(this).parent('li').toggleClass('active'); 
+            
+            // Toggle the sub-menu
             $(this).next('.gnb2').stop().slideToggle();
+            
+            // Optional: Close other open sub-menus (Accordion effect)
+            $(this).parent('li').siblings().removeClass('active').find('.gnb2').slideUp();
         }
     });
 });
