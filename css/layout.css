@@ -137,23 +137,25 @@ header:hover .menu .gnb2{opacity:1;transform:none;;transition-delay:0.3s;}
     .mobile_menu_btn.active span:nth-child(2) { opacity: 0; }
     .mobile_menu_btn.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -7px); }
 
-    /* Mobile Menu Container - Slide Down */
+    /* Mobile Menu Container - Slide From Right (Sidebar) */
     .mobile_menu_container { 
         display: block !important; 
         position: fixed; 
-        top: -100%; /* Hidden initially above the viewport */
-        left: 0;
+        top: 0;
+        right: -100%; /* Hidden on the right */
+        left: auto;
         width: 100%; 
         height: 100vh; 
-        background: #fff; 
-        z-index: 1000; /* Below header (1001) */
-        transition: top 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth slide down animation */
-        padding-top: 80px; /* Space for header */
+        background: #fff !important; 
+        z-index: 10001; /* Above header (1001), Below button (10002) */
+        transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        padding-top: 80px; 
         box-sizing: border-box; 
         overflow-y: auto;
     }
     .mobile_menu_container.active { 
-        top: 0 !important; /* Slide in to view */
+        right: 0 !important; /* Slide in */
+        top: 0 !important; /* Ensure top stays 0 */
     } 
 
     /* Mobile Menu Styling */
