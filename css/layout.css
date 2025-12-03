@@ -162,6 +162,7 @@ header:hover .menu .gnb2{opacity:1;transform:none;;transition-delay:0.3s;}
         flex-direction: column !important; 
         padding: 0 20px; 
         margin: 0 !important;
+        background-color: #fff !important; /* Ensure background is white */
     }
     .mobile_menu_container li { 
         display: block !important; 
@@ -174,12 +175,16 @@ header:hover .menu .gnb2{opacity:1;transform:none;;transition-delay:0.3s;}
         width: 100% !important; 
         font-size: 18px; 
         font-weight: 600; 
-        color: #333; 
+        color: #333 !important; /* Force black text color */
         padding: 20px 0; 
         justify-content: space-between; 
         align-items: center; 
         position: relative; 
         box-sizing: border-box;
+    }
+    /* Force color for any nested elements like span */
+    .mobile_menu_container > ul > li > a > span {
+        color: #333 !important;
     }
     /* Arrow icon for sub-menu */
     .mobile_menu_container > ul > li > a::after { 
