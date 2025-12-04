@@ -803,17 +803,27 @@ $(function() {
         $mobileMenuContainer.empty(); // Clear any existing content (text nodes, etc.)
         var $menuContent = $pcMenu.clone();
         $mobileMenuContainer.append($menuContent);
-        console.log("Mobile menu cloned successfully.");
-    } else {
-        console.error("Mobile menu container or PC menu not found.");
     }
 
     // Event handler for mobile menu button
-    $(document).on('click', '.mobile_menu_btn', function(){
-        $('.mobile_menu_container').toggleClass('active');
+    $(document).on('click', '.mobile_menu_btn', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+
+        var $container = $('.mobile_menu_container');
+        
+        // Safety Check: If container is empty, try to copy menu again
+        if ($container.children().length === 0 || $container.find('ul').length === 0) {
+            var $retryPcMenu = $('header .menu > ul');
+            if ($retryPcMenu.length > 0) {
+                $container.empty().append($retryPcMenu.clone());
+            }
+        }
+
+        $container.toggleClass('active');
         $(this).toggleClass('active');
 
-        if ($('.mobile_menu_container').hasClass('active')) {
+        if ($container.hasClass('active')) {
             $('body').css('overflow', 'hidden'); // Prevent body scrolling
         } else {
             $('body').css('overflow', '');
