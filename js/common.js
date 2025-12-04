@@ -812,10 +812,12 @@ $(function() {
 
         var $container = $('.mobile_menu_container');
         
-        // Unconditional Force Copy: Always refresh menu content to ensure visibility
-        var $retryPcMenu = $('header .menu > ul');
-        if ($retryPcMenu.length > 0) {
-            $container.empty().append($retryPcMenu.clone());
+        // Fallback: If menu is missing for some reason, try to copy it
+        if ($container.find('ul').length === 0) {
+            var $retryPcMenu = $('header .menu > ul');
+            if ($retryPcMenu.length > 0) {
+                $container.empty().append($retryPcMenu.clone());
+            }
         }
 
         $container.toggleClass('active');
