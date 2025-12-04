@@ -404,10 +404,41 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
     .sub_menu .depth ul li a { line-height: 50px; padding: 0 10px; font-size: 15px; }
     
     .content { padding: 60px 0; }
-    .sub_tbl table, .sub_tbl tbody, .sub_tbl tr, .sub_tbl th, .sub_tbl td { display: block; width: 100%; }
-    .sub_tbl table th { text-align: left; padding-bottom: 5px; border-bottom: none; margin-top: 15px; }
+    .content .inner { padding: 0 20px; box-sizing: border-box; }
+    .content img { max-width: 100%; height: auto; }
+
+    .sub_tbl { margin-top: 40px; border-top: 2px solid #242b5f; }
+    .sub_tbl table, .sub_tbl tbody, .sub_tbl tr { display: block; width: 100%; }
+    .sub_tbl table th { 
+        display: block; 
+        width: 100%; 
+        text-align: left; 
+        padding: 12px 15px; 
+        background-color: #f5f7fa; 
+        color: #222;
+        font-weight: 600;
+        font-size: 16px;
+        border-bottom: 1px solid #eaeaea; 
+        margin-top: 0; 
+        box-sizing: border-box;
+    }
     .sub_tbl table th::after { display: none; }
-    .sub_tbl table td { padding-top: 5px; padding-left: 0; border-bottom: 1px solid #eee; }
+    .sub_tbl table td { 
+        display: block; 
+        width: 100%; 
+        padding: 12px 15px; 
+        padding-left: 15px; 
+        font-size: 15px;
+        color: #444;
+        border-bottom: 1px solid #e0e0e0; 
+        box-sizing: border-box;
+        line-height: 1.5;
+        word-break: keep-all;
+    }
+    
+    .precaution { padding: 25px 20px; margin-top: 40px; background: #f9f9f9; border-radius: 8px; }
+    .precaution:before { position: static; display: block; margin-bottom: 10px; width: 40px; height: 40px; background-size: contain; }
+    .precaution li { font-size: 13px; line-height: 1.6; }
 }
 @media all and (max-width:1600px){
 	header .menu > ul{margin-right:0;}
