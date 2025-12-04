@@ -812,8 +812,8 @@ $(function() {
 
         var $container = $('.mobile_menu_container');
         
-        // Safety Check: If container is empty, try to copy menu again
-        if ($container.children().length === 0 || $container.find('ul').length === 0) {
+        // Force Copy: Always refresh menu on open to ensure it exists and is up-to-date
+        if (!$container.hasClass('active')) {
             var $retryPcMenu = $('header .menu > ul');
             if ($retryPcMenu.length > 0) {
                 $container.empty().append($retryPcMenu.clone());
