@@ -984,40 +984,7 @@ $(window).load(function() {
 		once:true,
 	});
 
-    // Force Mobile Menu Click Handler (Inline)
-    $('.mobile_menu_btn').off('click').on('click', function(e){
-        e.preventDefault();
-        e.stopPropagation();
-        
-        var $container = $('.mobile_menu_container');
-        
-        // Dynamic Cloning: If empty, copy from header
-        if ($container.children().length === 0) {
-            var $pcMenu = $('header .menu > ul');
-            if ($pcMenu.length > 0) {
-                $container.append($pcMenu.clone());
-            }
-        }
 
-        $(this).toggleClass('active');
-        $container.toggleClass('active');
-        
-        if ($container.hasClass('active')) {
-            $('body').css('overflow', 'hidden');
-        } else {
-            $('body').css('overflow', '');
-        }
-    });
-    
-    // Mobile Sub-menu Accordion Handler
-    $(document).on('click', '.mobile_menu_container .gnb1 > a', function(e){
-        if($(this).next('.gnb2').length > 0){
-            e.preventDefault();
-            $(this).parent('li').toggleClass('active');
-            $(this).next('.gnb2').stop().slideToggle();
-            $(this).parent('li').siblings().removeClass('active').find('.gnb2').slideUp();
-        }
-    });
 </script>
 
 
