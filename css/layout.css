@@ -155,27 +155,27 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
     .mobile_menu_btn.active span:nth-child(2) { opacity: 0; }
     .mobile_menu_btn.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -7px); }
 
-    /* Mobile Menu Container - Slide From Right (Sidebar) */
+    /* Mobile Menu Container - Slide From Left (Sidebar) */
     .mobile_menu_container { 
         display: block !important; 
         position: fixed; 
         top: 0;
-        right: -100%; /* Hidden on the right */
-        left: auto;
+        left: -100%; /* Hidden on the left */
+        right: auto;
         width: 70% !important; /* Adjusted to approx 2/3 width */
         height: 100vh; 
         background: #fff !important; 
         z-index: 10001; /* Above header (1001), Below button (10002) */
-        transition: right 0.4s ease-in-out; 
+        transition: left 0.4s ease-in-out; 
         padding-top: 80px; 
         box-sizing: border-box; 
         overflow-y: auto;
         opacity: 1 !important; 
         visibility: visible !important; 
-        box-shadow: -5px 0 15px rgba(0,0,0,0.15); /* Added shadow */
+        box-shadow: 5px 0 15px rgba(0,0,0,0.15); /* Shadow on the right */
     }
     .mobile_menu_container.active { 
-        right: 0 !important; /* Slide in */
+        left: 0 !important; /* Slide in */
         top: 0 !important; 
     } 
 
