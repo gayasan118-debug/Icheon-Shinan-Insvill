@@ -326,6 +326,9 @@ $(window).load(function() {
 						</div>
 					</div>
 				</div>
+                <div class="main-visual-pagination-wrap">
+                    <div class="swiper-pagination"></div>
+                </div>
 			</div>
 		</div>
 	</div>
@@ -1037,6 +1040,10 @@ $(window).load(function() {
 				disableOnInteraction: false,
 				pauseOnMouseEnter: false
 			},
+            pagination: {
+                el: '.main-visual-pagination-wrap .swiper-pagination',
+                clickable: true,
+            },
 			on: { init: function (sw) { sw.autoplay.stop(); } }
 			});
 

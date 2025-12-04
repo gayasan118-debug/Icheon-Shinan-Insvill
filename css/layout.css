@@ -494,6 +494,25 @@ footer .inner .f-right { margin-top: auto; margin-left: auto; }
 @keyframes roll{ 0%{transform: rotate(0deg);}
 100%{transform: rotate(360deg);}
 }
+.mv .main-visual-pagination-wrap {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+.main-visual-pagination-wrap .swiper-pagination-bullet {
+    width: 20px;
+    height: 2px;
+    background-color: #e3e3e3;
+    border-radius: 0;
+    opacity: 1;
+    transition: all 0.3s;
+}
+.main-visual-pagination-wrap .swiper-pagination-bullet-active {
+    width: 40px;
+    background-color: #ba995a;
+}
 .mv .mvSlide .item .bg { overflow: hidden; position: absolute; left: 50%; top: 50%; margin-top: -483px; margin-left: -960px; width: 1920px; height: 966px; }
 .mv .mvBgWrap { width: 100%; height: 100%; position: relative; }
 .mv .mvBgWrap .bg02 { position: absolute; width: 1920px; height: 1791px; left: 50%; top: 0; margin-left: -960px; transition: all 4s ease-in-out; }
