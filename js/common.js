@@ -812,12 +812,10 @@ $(function() {
 
         var $container = $('.mobile_menu_container');
         
-        // Force Copy: Always refresh menu on open to ensure it exists and is up-to-date
-        if (!$container.hasClass('active')) {
-            var $retryPcMenu = $('header .menu > ul');
-            if ($retryPcMenu.length > 0) {
-                $container.empty().append($retryPcMenu.clone());
-            }
+        // Unconditional Force Copy: Always refresh menu content to ensure visibility
+        var $retryPcMenu = $('header .menu > ul');
+        if ($retryPcMenu.length > 0) {
+            $container.empty().append($retryPcMenu.clone());
         }
 
         $container.toggleClass('active');
