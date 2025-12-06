@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="css/slick.css?ver=250526025">
 <link rel="stylesheet" href="css/swiper.min.css?ver=250526025">
 <link rel="stylesheet" href="css/fullpage.css?ver=250526025">
-<link rel="stylesheet" href="css/layout.css?ver=2250526029">
+<link rel="stylesheet" href="css/layout.css?ver=2250526025">
 <!--[if lte IE 8]>
 <script src="https://xn--om2b95a99s7bt4be5et2dc4ov7m6nd.com/js/html5.js"></script>
 <![endif]-->
@@ -39,7 +39,7 @@ var g5_cookie_domain = "";
 <script src="js/jquery.counterup.min.js?ver=250526025"></script>
 <script src="js/jquery.touchSwipe.js?ver=250526025"></script>
 <script src="js/fullpage.min.js?ver=250526025"></script>
-<script src="js/common.js?ver=1250526029"></script>
+<script src="js/common.js?ver=1250526025"></script>
 <script src="js/wrest.js?ver=250526025"></script>
 </head>
 <body><style>
@@ -326,9 +326,6 @@ $(window).load(function() {
 						</div>
 					</div>
 				</div>
-                <div class="main-visual-pagination-wrap">
-                    <div class="swiper-pagination"></div>
-                </div>
 			</div>
 		</div>
 	</div>
@@ -949,23 +946,7 @@ $(window).load(function() {
 </div>
 
 <div class="mobile_menu_container">
-<ul>
-					<li class="gnb1">
-						<a href="contents/sub01_01.php.html"><span>사업안내</span></a>
-						<ul class="gnb2">
-							<li>
-								<a href="contents/sub01_01.php.html">사업개요</a>
-							</li>
-							<li>
-								<a href="contents/sub01_02.php.html">브랜드 소개</a>
-							</li>
-							<li>
-								<a href="contents/sub01_03.php.html">오시는길</a>
-							</li>
-							<li>
-								<a href="images/document01.pdf" target="_blank">상호협의결과서</a>
-							</li>
-						</ul>
+	<p style="color: red; text-align: center; padding-top: 100px;">테스트 메뉴 (Test Menu)</p>
 </div>
 
 <div class="sticky_bottom_bar">
@@ -1001,7 +982,21 @@ $(window).load(function() {
 		once:true,
 	});
 
-
+    // Force Mobile Menu Click Handler (Inline)
+    $('.mobile_menu_btn').off('click').on('click', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        console.log('Mobile menu button clicked (Inline Handler)');
+        
+        $(this).toggleClass('active');
+        $('.mobile_menu_container').toggleClass('active');
+        
+        if ($('.mobile_menu_container').hasClass('active')) {
+            $('body').css('overflow', 'hidden');
+        } else {
+            $('body').css('overflow', '');
+        }
+    });
 </script>
 
 
@@ -1024,10 +1019,6 @@ $(window).load(function() {
 				disableOnInteraction: false,
 				pauseOnMouseEnter: false
 			},
-            pagination: {
-                el: '.main-visual-pagination-wrap .swiper-pagination',
-                clickable: true,
-            },
 			on: { init: function (sw) { sw.autoplay.stop(); } }
 			});
 
@@ -1231,9 +1222,3 @@ $(window).load(function() {
 		});		
 	});
 </script>
-
-
-
-
-
-
