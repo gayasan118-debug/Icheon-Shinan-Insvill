@@ -204,9 +204,16 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
         position: relative; 
         box-sizing: border-box;
     }
-    /* Force color for any nested elements like span */
+    /* Force color for any nested elements like span and handle states */
+    .mobile_menu_container a, 
+    .mobile_menu_container a:link, 
+    .mobile_menu_container a:visited, 
+    .mobile_menu_container a:hover, 
+    .mobile_menu_container a:active, 
+    .mobile_menu_container a:focus,
     .mobile_menu_container > ul > li > a > span {
         color: #333 !important;
+        text-decoration: none !important;
     }
     /* Arrow icon for sub-menu */
     .mobile_menu_container > ul > li > a::after { 
