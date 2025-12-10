@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -126,13 +126,10 @@ var g5_cookie_domain = "";
 								<a href="sub06_01.php.html">분양일정</a>
 							</li>
 							<li>
-								<a href="sub06_02.php.html">공급안내문</a>
+								<a href="sub06_03.php.html">입주자 모집공고</a>
 							</li>
 							<li>
-								<a href="../contents/sub06_03.php.html">입주자 모집공고</a>
-							</li>
-							<li>
-								<a href="../images/sub0506.pdf" target="_blank">주택시장 안정화 대책</a>
+								<a href="sub06_04.php.html">주택시장 안정화 대책</a>
 							</li>
 						</ul>
 					</li>
@@ -182,11 +179,11 @@ var g5_cookie_domain = "";
 			<li class="">
 				<a href="sub06_01.php.html">분양일정</a>
 			</li>
-			<li class="active">
-				<a href="sub06_02.php.html">공급안내문</a>
-			</li>
 			<li class="">
 				<a href="sub06_03.php.html">입주자 모집공고</a>
+			</li>
+			<li class="active">
+				<a href="sub06_04.php.html">주택시장 안정화 대책</a>
 			</li>
 		</ul>
 	</div>
@@ -196,7 +193,10 @@ var g5_cookie_domain = "";
 
 <div class="content">
 	<div class="inner">
-		<img data-aos="fade-up" data-aos-delay="400" src="../images/sub62.jpg">
+		<iframe src="../images/sub0506.pdf" width="100%" height="800px" style="border:none;"></iframe>
+		<div style="margin-top:20px; text-align:center;">
+			<a href="../images/sub0506.pdf" target="_blank" style="display:inline-block; padding:10px 20px; background:#333; color:#fff; text-decoration:none;">PDF 다운로드</a>
+		</div>
 	</div>
 </div>
 
@@ -231,20 +231,20 @@ var g5_cookie_domain = "";
 	</footer>
 </div>
 
+<div class="mobile_menu_overlay"></div>
 <div class="mobile_menu_container">
 </div>
 
 
 
-
 <div class="sticky_bottom_bar">
     <a href="tel:1688-0458" class="call_btn">
-        <span class="icon">?뱸</span>
-        <span class="txt">?꾪솕?곷떞</span>
+        <span class="icon">📞</span>
+        <span class="txt">전화상담</span>
     </a>
     <a href="../bbs/write.php.html?bo_table=customer" class="reg_btn">
-        <span class="icon">?뱷</span>
-        <span class="txt">愿?ш퀬媛앸벑濡?/span>
+        <span class="icon">📝</span>
+        <span class="txt">관심고객등록</span>
     </a>
 </div>
 
@@ -269,11 +269,64 @@ var g5_cookie_domain = "";
 		duration:1000,
 		once:true,
 	});
+
+	// Mobile Menu Initialization
+	var $mobileMenuContainer = $('.mobile_menu_container');
+	var $pcMenu = $('header .menu > ul');
+
+	if ($mobileMenuContainer.length > 0 && $pcMenu.length > 0) {
+		$mobileMenuContainer.empty();
+		var $menuContent = $pcMenu.clone();
+		$mobileMenuContainer.append($menuContent);
+	}
+
+	// Mobile Menu Click Handler
+	$('.mobile_menu_btn').off('click').on('click', function(e){
+		e.preventDefault();
+		e.stopPropagation();
+		
+		$(this).toggleClass('active');
+		$('.mobile_menu_container').toggleClass('active');
+		$('.mobile_menu_overlay').toggleClass('active');
+		
+		if ($('.mobile_menu_container').hasClass('active')) {
+			$('body').css('overflow', 'hidden');
+		} else {
+			$('body').css('overflow', '');
+		}
+	});
+	
+	// Close menu when overlay is clicked
+	$('.mobile_menu_overlay').off('click').on('click', function(){
+		$('.mobile_menu_btn').removeClass('active');
+		$('.mobile_menu_container').removeClass('active');
+		$('.mobile_menu_overlay').removeClass('active');
+		$('body').css('overflow', '');
+	});
+
+	// Mobile Sub Menu Toggle
+	$(document).on('click', '.mobile_menu_container .gnb1 > a', function(e){
+		if($(this).next('.gnb2').length > 0){
+			e.preventDefault();
+			$(this).parent('li').toggleClass('active');
+			$(this).next('.gnb2').stop().slideToggle();
+			$(this).parent('li').siblings().removeClass('active').find('.gnb2').slideUp();
+		}
+	});
+
+	// Close mobile menu when clicking sub-menu links
+	$('.mobile_menu_container .gnb2 a').off('click').on('click', function(){
+		$('.mobile_menu_btn').removeClass('active');
+		$('.mobile_menu_container').removeClass('active');
+		$('.mobile_menu_overlay').removeClass('active');
+		$('.mobile_menu_container .gnb1').removeClass('active');
+		$('.mobile_menu_container .gnb2').hide();
+		$('body').css('overflow', '');
+	});
 </script>
 
 
 
 </body>
 </html>
-
 
