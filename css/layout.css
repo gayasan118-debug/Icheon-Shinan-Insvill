@@ -167,8 +167,6 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
     header .rig .tel { 
         display: block;
         margin: 0;
-    }
-    header .rig .tel { 
         flex-shrink: 0;
     }
     header .rig .tel p { 
