@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
 Sitemap: https://xn--om2b95a99s7bt4be5et2dc4ov7m6nd.com/sitemap.xml
+Sitemap: https://xn--om2b95a99s7bt4be5et2dc4ov7m6nd.com/rss.xml
