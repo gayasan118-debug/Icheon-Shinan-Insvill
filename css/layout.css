@@ -259,11 +259,16 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
         justify-content: space-between; 
         align-items: center; 
         position: relative; 
-        box-sizing: border-box;
+        box-sizing: border-box !important;
+        min-width: 0 !important;
         white-space: normal !important;
         overflow: visible !important;
         text-overflow: clip !important;
         word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+        /* 크롬 특화 수정 */
+        -webkit-box-sizing: border-box !important;
+        -webkit-text-size-adjust: 100% !important;
     }
     /* Force color for any nested elements like span and handle states */
     .mobile_menu_container a, 
@@ -303,12 +308,21 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
         border-radius: 8px; 
         border-bottom: none !important; 
         overflow: visible !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        /* 크롬 특화 수정 */
+        -webkit-box-sizing: border-box !important;
     }
     .mobile_menu_container .gnb2 li { 
         border-bottom: none !important; 
         padding: 0 20px; 
         overflow: visible !important;
         white-space: normal !important;
+        min-width: 0 !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        /* 크롬 특화 수정 */
+        -webkit-box-sizing: border-box !important;
     }
     .mobile_menu_container .gnb2 li a { 
         display: block !important;
@@ -316,15 +330,21 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
         color: #666; 
         padding: 10px 0; 
         font-weight: 400; 
-        justify-content: flex-start;
         width: 100% !important;
         max-width: 100% !important;
+        min-width: 0 !important;
+        box-sizing: border-box !important;
         white-space: normal !important;
         overflow: visible !important;
         text-overflow: clip !important;
         word-wrap: break-word !important;
-        word-break: keep-all !important;
+        word-break: normal !important;
+        overflow-wrap: break-word !important;
         line-height: 1.5 !important;
+        /* 크롬 특화 수정 */
+        -webkit-box-sizing: border-box !important;
+        -webkit-text-size-adjust: 100% !important;
+        text-rendering: optimizeLegibility !important;
     }
     .mobile_menu_container .gnb2 li a::after { content: none; } /* No arrow for sub-items */
 
