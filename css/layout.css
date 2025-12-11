@@ -95,6 +95,23 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
         font-size: 16px;
         font-weight: 700;
         gap: 8px;
+        padding: 0 10px;
+        box-sizing: border-box;
+        min-width: 0;
+    }
+    .sticky_bottom_bar .txt {
+        white-space: normal !important;
+        word-break: keep-all !important;
+        overflow-wrap: break-word !important;
+        text-align: center;
+        line-height: 1.3;
+        display: block;
+        flex-shrink: 1;
+        min-width: 0;
+    }
+    .sticky_bottom_bar .icon {
+        flex-shrink: 0;
+        font-size: 18px;
     }
     .sticky_bottom_bar .call_btn {
         background-color: #fff;
@@ -104,9 +121,6 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
     .sticky_bottom_bar .reg_btn {
         background-color: #213257;
         color: #fff;
-    }
-    .sticky_bottom_bar .icon {
-        font-size: 18px;
     }
     
     /* Adjust footer padding */
