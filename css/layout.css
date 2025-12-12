@@ -92,9 +92,29 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
         justify-content: center;
         align-items: center;
         text-decoration: none;
-        font-size: 16px;
+        font-size: 14px;
         font-weight: 700;
-        gap: 8px;
+        gap: 6px;
+        padding: 0 8px;
+        box-sizing: border-box;
+        min-width: 0;
+        height: 100%;
+    }
+    .sticky_bottom_bar .txt {
+        white-space: normal !important;
+        word-break: keep-all !important;
+        overflow-wrap: break-word !important;
+        text-align: center;
+        line-height: 1.2;
+        display: block;
+        flex-shrink: 1;
+        min-width: 0;
+        font-size: 13px;
+    }
+    .sticky_bottom_bar .icon {
+        flex-shrink: 0;
+        font-size: 16px;
+        line-height: 1;
     }
     .sticky_bottom_bar .call_btn {
         background-color: #fff;
@@ -105,23 +125,64 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
         background-color: #213257;
         color: #fff;
     }
-    .sticky_bottom_bar .icon {
-        font-size: 18px;
-    }
     
     /* Adjust footer padding */
     footer { padding-bottom: 80px !important; }
 
     /* Layout & Typography */
-    .wrap { min-width: 100%; overflow-x: hidden; }
-    img { max-width: 100%; height: auto; }
+    html, body { 
+        overflow-x: hidden; 
+        width: 100%; 
+        position: relative;
+    }
+    .wrap { 
+        min-width: 100%; 
+        overflow-x: hidden; 
+        width: 100%;
+        box-sizing: border-box;
+    }
+    img { 
+        max-width: 100%; 
+        height: auto; 
+        display: block;
+    }
     
     /* Header Mobile */
-    header { height: 60px; background: #fff; border-bottom: 1px solid #eee; transition: none; position: fixed; top: 0; width: 100%; z-index: 1001; }
+    header { 
+        height: 60px; 
+        background: #fff; 
+        border-bottom: 1px solid #eee; 
+        transition: none; 
+        position: fixed; 
+        top: 0; 
+        left: 0;
+        width: 100%; 
+        z-index: 1001;
+        box-sizing: border-box;
+    }
     header:hover { height: 60px; }
-    header .head_in { height: 60px; min-width: 100%; overflow: visible; }
-    header h1 { top: 50%; transform: translateY(-50%); left: 20px; margin: 0; }
-    header h1 a { width: 140px; height: 24px; background-size: contain; background-image: url('../images/logo-active.png') !important; } 
+    header .head_in { 
+        height: 60px; 
+        min-width: 100%; 
+        max-width: 100%;
+        overflow: visible; 
+        box-sizing: border-box;
+        position: relative;
+    }
+    header h1 { 
+        top: 50%; 
+        transform: translateY(-50%); 
+        left: 20px; 
+        margin: 0; 
+        position: absolute;
+    }
+    header h1 a { 
+        width: 140px; 
+        height: 24px; 
+        background-size: contain; 
+        background-image: url('../images/logo-active.png') !important;
+        display: block;
+    } 
     
     /* Hide PC Menu */
     header .menu { display: none !important; }
@@ -132,32 +193,44 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
         align-items: center;
         justify-content: space-between;
         position: relative;
-        padding-right: 20px;
+        padding-right: 15px;
+        padding-left: 20px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    header h1 {
+        flex-shrink: 0;
+        max-width: calc(100% - 180px);
+        position: relative;
     }
     header .rig { 
         display: flex !important; 
         align-items: center;
-        gap: 15px;
-        position: absolute !important;
-        top: 50% !important;
-        transform: translateY(-50%) !important;
-        right: 20px !important;
+        gap: 8px;
+        position: relative !important;
+        top: auto !important;
+        transform: none !important;
+        right: auto !important;
+        flex-shrink: 0;
+        margin-left: auto;
     }
     header .rig .open { display: none; }
     header .rig .tel { 
         display: block;
         margin: 0;
+        flex-shrink: 0;
     }
     header .rig .tel p { 
         color: #333; 
-        font-size: 15px; 
+        font-size: 14px; 
         font-weight: 700; 
-        padding-left: 22px; 
-        background: url('../images/h-tell-active.png') no-repeat left center / 16px 16px; 
+        padding-left: 20px; 
+        background: url('../images/h-tell-active.png') no-repeat left center / 14px 14px; 
         margin: 0;
         white-space: nowrap;
+        line-height: 1.2;
     }
-    header .rig .tel p strong { color: #333; font-size: 16px; }
+    header .rig .tel p strong { color: #333; font-size: 15px; }
 
     /* Mobile Menu Button */
     .mobile_menu_btn { 
@@ -204,6 +277,7 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
         padding-top: 80px; 
         box-sizing: border-box; 
         overflow-y: auto;
+        overflow-x: visible !important;
         opacity: 1 !important; /* Force opacity */
         visibility: visible !important; /* Force visibility */
         box-shadow: -4px 0 20px rgba(0,0,0,0.1);
@@ -238,12 +312,15 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
         padding: 0 20px; 
         margin: 0 !important;
         background-color: #fff !important; /* Ensure background is white */
+        overflow: visible !important;
     }
     .mobile_menu_container li { 
         display: block !important; 
         width: 100% !important; 
         float: none !important; 
         border-bottom: 1px solid #eee; 
+        overflow: visible !important;
+        white-space: normal !important;
     }
     .mobile_menu_container > ul > li > a { 
         display: flex !important; 
@@ -255,7 +332,16 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
         justify-content: space-between; 
         align-items: center; 
         position: relative; 
-        box-sizing: border-box;
+        box-sizing: border-box !important;
+        min-width: 0 !important;
+        white-space: normal !important;
+        overflow: visible !important;
+        text-overflow: clip !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+        /* 크롬 특화 수정 */
+        -webkit-box-sizing: border-box !important;
+        -webkit-text-size-adjust: 100% !important;
     }
     /* Force color for any nested elements like span and handle states */
     .mobile_menu_container a, 
@@ -294,18 +380,47 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
         margin-bottom: 15px; 
         border-radius: 8px; 
         border-bottom: none !important; 
+        overflow: visible !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        /* 크롬 특화 수정 */
+        -webkit-box-sizing: border-box !important;
+        max-height: none !important;
     }
     .mobile_menu_container .gnb2 li { 
         border-bottom: none !important; 
         padding: 0 20px; 
+        overflow: visible !important;
+        white-space: normal !important;
+        min-width: 0 !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        /* 크롬 특화 수정 */
+        -webkit-box-sizing: border-box !important;
     }
     .mobile_menu_container .gnb2 li a { 
         display: block !important;
         font-size: 15px; 
         color: #666; 
-        padding: 10px 0; 
+        padding: 12px 20px; 
         font-weight: 400; 
-        justify-content: flex-start;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        box-sizing: border-box !important;
+        white-space: normal !important;
+        overflow: visible !important;
+        text-overflow: clip !important;
+        word-wrap: break-word !important;
+        word-break: keep-all !important;
+        overflow-wrap: break-word !important;
+        line-height: 1.6 !important;
+        /* 크롬 특화 수정 */
+        -webkit-box-sizing: border-box !important;
+        -webkit-text-size-adjust: 100% !important;
+        text-rendering: optimizeLegibility !important;
+        height: auto !important;
+        min-height: 44px !important;
     }
     .mobile_menu_container .gnb2 li a::after { content: none; } /* No arrow for sub-items */
 
@@ -450,7 +565,30 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
     footer { padding: 50px 20px; height: auto; }
     footer .inner { flex-direction: column; gap: 30px; align-items: center; text-align: center; }
     footer .inner .f-alt-t { justify-content: center; }
-    footer .inner .f-alt-c .custom { flex-direction: column; align-items: center; gap: 5px; }
+    footer .inner .f-alt-c { 
+        font-size: 12px; 
+        line-height: 1.8; 
+        word-break: keep-all; 
+        overflow-wrap: break-word; 
+    }
+    footer .inner .f-alt-c p { 
+        margin-bottom: 15px; 
+        word-break: keep-all; 
+        overflow-wrap: break-word; 
+    }
+    footer .inner .f-alt-c .custom { 
+        flex-direction: column; 
+        align-items: center; 
+        gap: 5px; 
+        word-break: keep-all; 
+        overflow-wrap: break-word; 
+    }
+    footer .inner .f-alt-c .custom span { 
+        display: inline-block; 
+        word-break: keep-all; 
+        overflow-wrap: break-word; 
+        white-space: normal; 
+    }
     footer .inner .f-right { margin: 0; }
     footer .top_btn { position: relative; right: auto; top: auto; margin-bottom: 20px; display: inline-block; }
 
