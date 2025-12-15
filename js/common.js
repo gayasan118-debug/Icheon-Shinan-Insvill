@@ -796,7 +796,11 @@ function fn_winCheck(){
 
 $(function() {
     // Mobile Menu: Event handler for mobile menu button toggle
-    $(document).on('click', '.mobile_menu_btn', function(){
+    $(document).on('click', '.mobile_menu_btn', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        console.log('Mobile menu button clicked');
+        
         $('.mobile_menu_container').toggleClass('active');
         $(this).toggleClass('active');
         $('.mobile_menu_overlay').toggleClass('active');
@@ -810,13 +814,17 @@ $(function() {
 
     // Close menu when overlay is clicked
     $(document).on('click', '.mobile_menu_overlay', function(){
-        closeMobileMenu();
+        if (typeof window.closeMobileMenu === 'function') {
+            window.closeMobileMenu();
+        }
     });
 
     // Event handler for mobile main menu (gnb1) - toggle submenu
     $(document).on('click', '.mobile_menu_container .gnb1 > a', function(e){
         var $parent = $(this).parent('.gnb1');
         var $submenu = $parent.find('.gnb2');
+        
+        console.log('Main menu clicked:', $(this).text(), 'Has submenu:', $submenu.length > 0);
         
         // Check if submenu exists and has items
         if($submenu.length > 0 && $submenu.find('li').length > 0){
@@ -837,19 +845,12 @@ $(function() {
     // Close menu when submenu link is clicked (allow navigation first)
     $(document).on('click', '.mobile_menu_container .gnb2 a', function(e){
         // Don't prevent default - let the link work
+        console.log('Submenu clicked:', $(this).text());
         // Close menu after a tiny delay to allow navigation
         setTimeout(function(){
-            closeMobileMenu();
-        }, 50);
+            if (typeof window.closeMobileMenu === 'function') {
+                window.closeMobileMenu();
+            }
+        }, 100);
     });
-
-    // Function to close mobile menu
-    function closeMobileMenu(){
-        $('.mobile_menu_btn').removeClass('active');
-        $('.mobile_menu_container').removeClass('active');
-        $('.mobile_menu_overlay').removeClass('active');
-        $('.mobile_menu_container .gnb1').removeClass('open');
-        $('.mobile_menu_container .gnb2').slideUp(300);
-        $('body').css('overflow', '');
-    }
 });

@@ -1039,7 +1039,15 @@ $(window).load(function() {
 		once:true,
 	});
 
-    // Mobile menu close function is now in common.js
+    // Global function to close mobile menu (accessible from anywhere)
+    window.closeMobileMenu = function(){
+        $('.mobile_menu_btn').removeClass('active');
+        $('.mobile_menu_container').removeClass('active');
+        $('.mobile_menu_overlay').removeClass('active');
+        $('.mobile_menu_container .gnb1').removeClass('open');
+        $('.mobile_menu_container .gnb2').slideUp(300);
+        $('body').css('overflow', '');
+    };
 </script>
 
 
