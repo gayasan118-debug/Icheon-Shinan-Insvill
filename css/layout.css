@@ -642,9 +642,11 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
     .sub_top .sub_tit dl dd { font-size: 15px; margin-top: 20px; line-height: 1.6; }
     .sub_menu { 
         position: relative;
+        min-height: 66px;
     }
     .sub_menu .inner { 
-        flex-direction: column; 
+        flex-direction: column;
+        min-height: 66px;
     }
     .sub_menu .home { 
         display: none; 
@@ -673,12 +675,12 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
         min-width: 0;
         border-bottom: 1px solid rgba(255,255,255,0.1); 
         height: auto;
-        min-height: 54px;
+        min-height: 66px;
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
-        padding: 10px 8px;
+        padding: 12px 8px;
         position: relative;
     }
     .sub_menu .depth ul li:not(:last-child)::after {
@@ -688,11 +690,11 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
         top: 50%;
         transform: translateY(-50%);
         width: 1px;
-        height: 20px;
+        height: 30px;
         background: rgba(255, 255, 255, 0.2);
     }
     .sub_menu .depth ul li a { 
-        line-height: 1.4; 
+        line-height: 1.5; 
         padding: 0; 
         font-size: 13px; 
         white-space: normal;
@@ -701,6 +703,7 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
         word-break: keep-all;
         overflow-wrap: break-word;
         width: 100%;
+        max-height: none;
     }
     
     /* Content Area - Mobile Optimization */
@@ -1909,12 +1912,15 @@ to{   transform:translateX(-50%); }
         padding: 0 3px;
     }
     .sub_menu .depth ul li {
-        padding: 8px 5px;
-        min-height: 52px;
+        padding: 10px 5px;
+        min-height: 62px;
+    }
+    .sub_menu .depth ul li:not(:last-child)::after {
+        height: 28px;
     }
     .sub_menu .depth ul li a {
         font-size: 12px;
-        line-height: 1.3;
+        line-height: 1.4;
     }
     .content {
         padding: 40px 0 70px;
@@ -1972,12 +1978,15 @@ to{   transform:translateX(-50%); }
         padding: 0 2px;
     }
     .sub_menu .depth ul li {
-        padding: 8px 3px;
-        min-height: 50px;
+        padding: 10px 3px;
+        min-height: 60px;
+    }
+    .sub_menu .depth ul li:not(:last-child)::after {
+        height: 26px;
     }
     .sub_menu .depth ul li a {
         font-size: 11px;
-        line-height: 1.3;
+        line-height: 1.4;
     }
 }
 
