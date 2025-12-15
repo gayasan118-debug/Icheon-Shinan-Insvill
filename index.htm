@@ -1063,12 +1063,14 @@ $(window).load(function() {
 
     // Global function to close mobile menu (accessible from common.js)
     window.closeMobileMenu = function(){
+        console.log('Closing mobile menu...');
         $('.mobile_menu_btn').removeClass('active');
         $('.mobile_menu_container').removeClass('active');
         $('.mobile_menu_overlay').removeClass('active');
         $('.mobile_menu_container .gnb1').removeClass('open');
         $('.mobile_menu_container .gnb2').slideUp(300);
         $('body').css('overflow', '');
+        console.log('Mobile menu closed');
     };
 </script>
 

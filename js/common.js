@@ -795,20 +795,30 @@ function fn_winCheck(){
 }
 
 $(function() {
+    console.log('Mobile menu script loaded');
+    
     // Mobile Menu: Event handler for mobile menu button toggle
     $(document).on('click', '.mobile_menu_btn', function(e){
         e.preventDefault();
         e.stopPropagation();
-        console.log('Mobile menu button clicked');
+        console.log('Mobile menu button clicked!');
         
-        $('.mobile_menu_container').toggleClass('active');
-        $(this).toggleClass('active');
-        $('.mobile_menu_overlay').toggleClass('active');
+        var $menuContainer = $('.mobile_menu_container');
+        var $overlay = $('.mobile_menu_overlay');
+        var $btn = $(this);
+        
+        $menuContainer.toggleClass('active');
+        $btn.toggleClass('active');
+        $overlay.toggleClass('active');
+        
+        console.log('Menu active:', $menuContainer.hasClass('active'));
 
-        if ($('.mobile_menu_container').hasClass('active')) {
-            $('body').css('overflow', 'hidden'); // Prevent body scrolling
+        if ($menuContainer.hasClass('active')) {
+            $('body').css('overflow', 'hidden');
+            console.log('Menu opened - body scroll disabled');
         } else {
             $('body').css('overflow', '');
+            console.log('Menu closed - body scroll enabled');
         }
     });
 
