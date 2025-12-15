@@ -167,21 +167,31 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
         transform: none !important;
         right: auto !important;
         z-index: 10002 !important; 
-        width: 30px; 
-        height: 30px; 
-        background: none; 
-        border: none; 
+        width: 30px !important; 
+        height: 30px !important; 
+        background: none !important; 
+        border: none !important; 
         margin: 0 !important; 
+        padding: 0 !important;
         cursor: pointer !important; 
         pointer-events: auto !important;
-        flex-shrink: 0;
+        flex-shrink: 0 !important;
+        outline: none !important;
     }
     header.sub .mobile_menu_btn {
         position: relative !important;
         right: auto !important;
         z-index: 10002 !important;
     }
-    .mobile_menu_btn span { display: block; width: 100%; height: 3px; background-color: #333 !important; margin: 6px 0; transition: 0.3s; }
+    .mobile_menu_btn span { 
+        display: block !important; 
+        width: 100% !important; 
+        height: 3px !important; 
+        background-color: #333 !important; 
+        margin: 6px 0 !important; 
+        transition: 0.3s !important;
+        pointer-events: none !important;
+    }
     
     /* Mobile Menu Button Animation */
     .mobile_menu_btn.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
@@ -191,44 +201,46 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
     /* Mobile Menu Container - Slide From Right (Sidebar) */
     .mobile_menu_container { 
         display: block !important; 
-        position: fixed; 
-        top: 0;
-        right: -70%; /* Hidden on the right */
-        left: auto;
+        position: fixed !important; 
+        top: 0 !important;
+        right: -100% !important; /* Hidden completely on the right */
+        left: auto !important;
         width: 70% !important; 
-        max-width: 360px;
-        height: 100vh; 
+        max-width: 360px !important;
+        height: 100vh !important; 
         background: #fff !important; 
-        z-index: 10001; /* Above header (1001), Below button (10002) */
-        transition: right 0.4s ease-in-out; /* Simplified transition */
-        padding-top: 80px; 
-        box-sizing: border-box; 
-        overflow-y: auto;
-        opacity: 1 !important; /* Force opacity */
-        visibility: visible !important; /* Force visibility */
-        box-shadow: -4px 0 20px rgba(0,0,0,0.1);
+        z-index: 10001 !important; /* Above header (1001), Below button (10002) */
+        transition: right 0.4s ease-in-out !important;
+        padding-top: 80px !important; 
+        box-sizing: border-box !important; 
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        box-shadow: -4px 0 20px rgba(0,0,0,0.1) !important;
+        pointer-events: auto !important;
     }
     .mobile_menu_container.active { 
-        right: 0 !important; /* Slide in */
-        top: 0 !important; 
+        right: 0 !important; /* Slide in fully */
     }
     
     /* Mobile Menu Overlay */
     .mobile_menu_overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 10000;
-        opacity: 0;
-        transition: opacity 0.4s ease-in-out;
+        display: none !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100vh !important;
+        background: rgba(0, 0, 0, 0.5) !important;
+        z-index: 10000 !important;
+        opacity: 0 !important;
+        transition: opacity 0.4s ease-in-out !important;
+        pointer-events: auto !important;
     }
     .mobile_menu_overlay.active {
-        display: block;
-        opacity: 1;
+        display: block !important;
+        opacity: 1 !important;
     } 
 
     /* Mobile Menu Styling */
