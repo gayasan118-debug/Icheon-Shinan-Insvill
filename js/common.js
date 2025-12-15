@@ -808,32 +808,57 @@ $(function() {
         console.error("Mobile menu container or PC menu not found.");
     }
 
-    // Event handler for mobile menu button
-    $(document).on('click', '.mobile_menu_btn', function(){
-        $('.mobile_menu_container').toggleClass('active');
-        $(this).toggleClass('active');
-
-        if ($('.mobile_menu_container').hasClass('active')) {
-            $('body').css('overflow', 'hidden'); // Prevent body scrolling
-        } else {
+        // Event handler for mobile menu button
+        $(document).on('click', '.mobile_menu_btn', function(){
+            $('.mobile_menu_container').toggleClass('active');
+            $(this).toggleClass('active');
+            $('.mobile_menu_overlay').toggleClass('active'); // Toggle overlay
+    
+            if ($('.mobile_menu_container').hasClass('active')) {
+                $('body').css('overflow', 'hidden'); // Prevent body scrolling
+            } else {
+                $('body').css('overflow', '');
+            }
+        });
+    
+        // Close menu when overlay is clicked
+        $(document).on('click', '.mobile_menu_overlay', function(){
+            $('.mobile_menu_btn').removeClass('active');
+            $('.mobile_menu_container').removeClass('active');
+            $('.mobile_menu_overlay').removeClass('active');
+            $('.mobile_menu_container .gnb1').removeClass('active').find('.gnb2').slideUp(); // Close all submenus
             $('body').css('overflow', '');
-        }
-    });
-
-    // Event handler for mobile sub-menu toggling
-    $(document).on('click', '.mobile_menu_container .gnb1 > a', function(e){
-        // If the clicked link has a sub-menu sibling
-        if($(this).next('.gnb2').length > 0){
-            e.preventDefault(); // Prevent page navigation
-            
-            // Toggle active class on the parent li (for arrow rotation)
-            $(this).parent('li').toggleClass('active'); 
-            
-            // Toggle the sub-menu
-            $(this).next('.gnb2').stop().slideToggle();
-            
-            // Optional: Close other open sub-menus (Accordion effect)
-            $(this).parent('li').siblings().removeClass('active').find('.gnb2').slideUp();
-        }
-    });
-});
+        });
+    
+        // Event handler for mobile sub-menu toggling
+        $(document).on('click', '.mobile_menu_container .gnb1 > a', function(e){
+            // If the clicked link has a sub-menu sibling
+            if($(this).next('.gnb2').length > 0){
+                e.preventDefault(); // Prevent page navigation
+    
+                // Toggle active class on the parent li (for arrow rotation)
+                $(this).parent('li').toggleClass('active');
+    
+                // Toggle the sub-menu
+                $(this).next('.gnb2').stop().slideToggle();
+    
+                // Optional: Close other open sub-menus (Accordion effect)
+                $(this).parent('li').siblings().removeClass('active').find('.gnb2').slideUp();
+            } else {
+                // If it's a link without a submenu, close the entire mobile menu
+                $('.mobile_menu_btn').removeClass('active');
+                $('.mobile_menu_container').removeClass('active');
+                $('.mobile_menu_overlay').removeClass('active');
+                $('.mobile_menu_container .gnb1').removeClass('active').find('.gnb2').slideUp(); // Close all submenus
+                $('body').css('overflow', '');
+            }
+        });
+    
+        // Close the mobile menu after selecting a submenu link (if not already handled by else block above)
+        $(document).on('click', '.mobile_menu_container .gnb2 a', function(){
+            $('.mobile_menu_btn').removeClass('active');
+            $('.mobile_menu_container').removeClass('active');
+            $('.mobile_menu_overlay').removeClass('active');
+            $('.mobile_menu_container .gnb1').removeClass('active').find('.gnb2').slideUp(); // Close all submenus
+            $('body').css('overflow', '');
+        });});

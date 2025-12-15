@@ -1057,50 +1057,6 @@ $(window).load(function() {
 		once:true,
 	});
 
-    // Force Mobile Menu Click Handler (Inline)
-    $('.mobile_menu_btn').off('click').on('click', function(e){
-        e.preventDefault();
-        e.stopPropagation();
-        console.log('Mobile menu button clicked (Inline Handler)');
-        
-        $(this).toggleClass('active');
-        $('.mobile_menu_container').toggleClass('active');
-        $('.mobile_menu_overlay').toggleClass('active');
-        
-        if ($('.mobile_menu_container').hasClass('active')) {
-            $('body').css('overflow', 'hidden');
-        } else {
-            $('body').css('overflow', '');
-        }
-    });
-    
-    // Close menu when overlay is clicked
-    $('.mobile_menu_overlay').off('click').on('click', function(){
-        $('.mobile_menu_btn').removeClass('active');
-        $('.mobile_menu_container').removeClass('active');
-        $('.mobile_menu_overlay').removeClass('active');
-        $('body').css('overflow', '');
-    });
-
-    // Mobile menu accordion + navigation
-    $('.mobile_menu_container .gnb1 > a').off('click').on('click', function(e){
-        var $parent = $(this).parent('.gnb1');
-        var $sub = $parent.children('.gnb2');
-        // If submenu exists, toggle accordion instead of navigating immediately
-        if ($sub.length) {
-            e.preventDefault();
-            $parent.toggleClass('open');
-            $sub.stop(true, true).slideToggle(180);
-        } else {
-            closeMobileMenu();
-        }
-    });
-
-    $('.mobile_menu_container .gnb2 a').off('click').on('click', function(){
-        // Close the mobile menu after selecting a submenu link
-        closeMobileMenu();
-    });
-
     function closeMobileMenu(){
         $('.mobile_menu_btn').removeClass('active');
         $('.mobile_menu_container').removeClass('active');
