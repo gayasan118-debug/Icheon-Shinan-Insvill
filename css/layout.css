@@ -697,8 +697,8 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
         background: rgba(255, 255, 255, 0.2);
     }
     .sub_menu .depth ul li a { 
-        line-height: 1.6; 
-        padding: 2px 0; 
+        line-height: 1.25; 
+        padding: 0; 
         font-size: 13px; 
         white-space: normal;
         display: block;
@@ -1927,8 +1927,8 @@ to{   transform:translateX(-50%); }
     }
     .sub_menu .depth ul li a {
         font-size: 12px;
-        line-height: 1.5;
-        padding: 2px 0;
+        line-height: 1.25;
+        padding: 0;
     }
     .content {
         padding: 40px 0 70px;
@@ -1998,8 +1998,8 @@ to{   transform:translateX(-50%); }
     }
     .sub_menu .depth ul li a {
         font-size: 11px;
-        line-height: 1.5;
-        padding: 2px 0;
+        line-height: 1.25;
+        padding: 0;
     }
 }
 
