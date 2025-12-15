@@ -642,11 +642,11 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
     .sub_top .sub_tit dl dd { font-size: 15px; margin-top: 20px; line-height: 1.6; }
     .sub_menu { 
         position: relative;
-        min-height: 66px;
+        min-height: 80px;
     }
     .sub_menu .inner { 
         flex-direction: column;
-        min-height: 66px;
+        min-height: 80px;
     }
     .sub_menu .home { 
         display: none; 
@@ -655,8 +655,10 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
         width: 100%; 
         padding: 0;
         overflow-x: auto;
+        overflow-y: visible;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
+        min-height: 80px;
     }
     .sub_menu .depth::-webkit-scrollbar {
         display: none;
@@ -667,6 +669,7 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
         justify-content: space-around;
         align-items: stretch;
         min-width: 100%;
+        min-height: 80px;
         padding: 0 5px;
         gap: 0;
     }
@@ -675,12 +678,12 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
         min-width: 0;
         border-bottom: 1px solid rgba(255,255,255,0.1); 
         height: auto;
-        min-height: 66px;
+        min-height: 80px;
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
-        padding: 12px 8px;
+        padding: 14px 8px;
         position: relative;
     }
     .sub_menu .depth ul li:not(:last-child)::after {
@@ -690,12 +693,12 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
         top: 50%;
         transform: translateY(-50%);
         width: 1px;
-        height: 30px;
+        height: 40px;
         background: rgba(255, 255, 255, 0.2);
     }
     .sub_menu .depth ul li a { 
-        line-height: 1.5; 
-        padding: 0; 
+        line-height: 1.6; 
+        padding: 2px 0; 
         font-size: 13px; 
         white-space: normal;
         display: block;
@@ -1908,19 +1911,24 @@ to{   transform:translateX(-50%); }
     .sub_top .sub_tit dl dd {
         font-size: 14px;
     }
+    .sub_menu .depth {
+        min-height: 76px;
+    }
     .sub_menu .depth ul {
         padding: 0 3px;
+        min-height: 76px;
     }
     .sub_menu .depth ul li {
-        padding: 10px 5px;
-        min-height: 62px;
+        padding: 12px 5px;
+        min-height: 76px;
     }
     .sub_menu .depth ul li:not(:last-child)::after {
-        height: 28px;
+        height: 36px;
     }
     .sub_menu .depth ul li a {
         font-size: 12px;
-        line-height: 1.4;
+        line-height: 1.5;
+        padding: 2px 0;
     }
     .content {
         padding: 40px 0 70px;
@@ -1974,19 +1982,24 @@ to{   transform:translateX(-50%); }
     .content .inner {
         padding: 0 10px;
     }
+    .sub_menu .depth {
+        min-height: 72px;
+    }
     .sub_menu .depth ul {
         padding: 0 2px;
+        min-height: 72px;
     }
     .sub_menu .depth ul li {
-        padding: 10px 3px;
-        min-height: 60px;
+        padding: 12px 3px;
+        min-height: 72px;
     }
     .sub_menu .depth ul li:not(:last-child)::after {
-        height: 26px;
+        height: 32px;
     }
     .sub_menu .depth ul li a {
         font-size: 11px;
-        line-height: 1.4;
+        line-height: 1.5;
+        padding: 2px 0;
     }
 }
 
