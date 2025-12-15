@@ -1072,41 +1072,6 @@ $(window).load(function() {
         $('body').css('overflow', '');
         console.log('Mobile menu closed');
     };
-
-    // Direct hamburger button click handler - backup
-    $(document).ready(function(){
-        console.log('Document ready - setting up mobile menu');
-        
-        $('.mobile_menu_btn').on('click', function(e){
-            e.preventDefault();
-            e.stopPropagation();
-            console.log('Hamburger button CLICKED directly!');
-            
-            var $menuContainer = $('.mobile_menu_container');
-            var $overlay = $('.mobile_menu_overlay');
-            var isActive = $menuContainer.hasClass('active');
-            
-            console.log('Current state - active:', isActive);
-            
-            if(isActive) {
-                // Close menu
-                $(this).removeClass('active');
-                $menuContainer.removeClass('active');
-                $overlay.removeClass('active');
-                $('body').css('overflow', '');
-                console.log('Menu CLOSED');
-            } else {
-                // Open menu
-                $(this).addClass('active');
-                $menuContainer.addClass('active');
-                $overlay.addClass('active');
-                $('body').css('overflow', 'hidden');
-                console.log('Menu OPENED');
-            }
-        });
-        
-        console.log('Mobile menu button handler registered');
-    });
 </script>
 
 
