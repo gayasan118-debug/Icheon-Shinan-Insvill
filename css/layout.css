@@ -554,25 +554,31 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
         display: block !important;
     }
     
-    .content { padding: 40px 0 60px; overflow: visible !important; }
-    .content .inner { padding: 0 10px; }
+    .content { padding: 40px 0 60px; overflow-x: hidden !important; overflow-y: visible !important; }
+    .content .inner { padding: 0 5px; }
     .content .inner > div:first-child { margin-bottom: 30px; }
     .content .inner > div:first-child img { width: 100%; height: auto; display: block; }
     
-    /* 모바일 서브페이지 이미지 최적화 - 문구가 보이도록 축소 */
+    /* 모바일 서브페이지 이미지 확대 - 이미지 안 문구가 잘 보이도록 */
     .content .inner img { 
-        max-width: 95% !important; 
-        width: auto !important; 
+        max-width: none !important; 
+        width: 120% !important; 
         height: auto !important; 
         display: block !important; 
-        margin: 20px auto !important;
-        transform: scale(0.95) !important;
+        margin: 0 -10% !important;
+        transform: scale(1.1) !important;
         transform-origin: center !important;
     }
-    .content .inner img.mt35 { margin-top: 40px auto 20px auto !important; }
-    .content .inner img.mt80 { margin-top: 60px auto 20px auto !important; }
+    .content .inner img.mt35 { 
+        margin: 30px -10% 0 -10% !important; 
+        transform: scale(1.1) !important;
+    }
+    .content .inner img.mt80 { 
+        margin: 50px -10% 0 -10% !important; 
+        transform: scale(1.1) !important;
+    }
     
-    /* 오시는길 페이지 이미지 세로 배치 */
+    /* 오시는길 페이지 이미지는 원본 크기 유지 */
     .content .inner img[src*="sub13"] {
         max-width: 100% !important;
         width: 100% !important;
@@ -580,7 +586,7 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
         object-fit: contain !important;
         display: block !important;
         transform: scale(1) !important;
-        margin: 20px auto !important;
+        margin: 0 auto !important;
     }
     .content .inner .sub_location { margin-bottom: 30px; position: relative; }
     .content .inner .sub_location img { position: relative !important; width: 100% !important; height: auto !important; display: block !important; }
