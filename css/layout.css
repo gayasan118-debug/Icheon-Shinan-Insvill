@@ -499,44 +499,58 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
     .sub_top .sub_tit dl dt p { font-size: 32px; }
     .sub_menu .inner { flex-direction: column; }
     .sub_menu .home { display: none; }
-    .sub_menu .depth { width: 100%; padding: 0; }
+    .sub_menu .depth { 
+        width: 100%; 
+        padding: 0; 
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        -webkit-overflow-scrolling: touch;
+    }
     .sub_menu .depth ul { 
-        flex-wrap: wrap !important; 
-        justify-content: center !important;
+        display: flex !important;
+        flex-wrap: nowrap !important; 
+        justify-content: flex-start !important;
         overflow-x: visible !important; 
         -webkit-overflow-scrolling: touch; 
-        padding: 10px 5px !important;
+        padding: 0 !important;
+        min-width: 100% !important;
+        white-space: nowrap !important;
     }
     .sub_menu .depth ul li { 
-        flex: 1 1 auto !important; 
-        min-width: 110px !important; 
-        max-width: 50% !important;
-        border-bottom: none !important; 
-        height: auto !important; 
-        line-height: 1.4 !important;
-        padding: 5px !important;
+        flex: 0 0 auto !important; 
+        min-width: auto !important; 
+        max-width: none !important;
+        border-bottom: 1px solid rgba(255,255,255,0.1) !important; 
+        height: 50px !important; 
+        line-height: 50px !important;
+        padding: 0 !important;
         box-sizing: border-box !important;
     }
     .sub_menu .depth ul li a { 
-        line-height: 1.4 !important; 
-        padding: 12px 10px !important; 
-        font-size: 14px !important; 
-        white-space: normal !important;
-        word-wrap: break-word !important;
+        line-height: 50px !important; 
+        padding: 0 15px !important; 
+        font-size: 13px !important; 
+        white-space: nowrap !important;
+        word-wrap: normal !important;
         display: block !important;
-        height: auto !important;
-        min-height: 45px !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
+        height: 50px !important;
+        min-height: auto !important;
         text-align: center !important;
     }
     .sub_menu .depth ul li.active::before { 
-        width: 80% !important; 
-        bottom: 5px !important;
+        width: 70% !important; 
+        bottom: 0 !important;
+        height: 3px !important;
     }
     .sub_menu .depth ul li:not(:last-of-type)::after { 
-        display: none !important; 
+        content: "" !important;
+        position: absolute !important;
+        right: 0 !important;
+        width: 1px !important;
+        height: 14px !important;
+        top: 18px !important;
+        background: rgba(255,255,255,0.3) !important;
+        display: block !important;
     }
     
     .content { padding: 40px 0 60px; overflow: visible !important; }
