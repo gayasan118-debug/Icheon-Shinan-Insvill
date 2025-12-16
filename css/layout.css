@@ -209,8 +209,8 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
         top: 0 !important;
         right: -100% !important; /* Hidden completely on the right */
         left: auto !important;
-        width: 70% !important; 
-        max-width: 360px !important;
+        width: 75% !important; 
+        max-width: 400px !important;
         height: 100vh !important; 
         background: #fff !important; 
         z-index: 10001 !important; /* Above header (1001), Below button (10002) */
@@ -218,7 +218,7 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
         padding-top: 80px !important; 
         box-sizing: border-box !important; 
         overflow-y: auto !important;
-        overflow-x: hidden !important;
+        overflow-x: visible !important;
         opacity: 1 !important;
         visibility: visible !important;
         box-shadow: -4px 0 20px rgba(0,0,0,0.1) !important;
@@ -254,12 +254,16 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
         padding: 0 20px; 
         margin: 0 !important;
         background-color: #fff !important; /* Ensure background is white */
+        width: 100% !important;
+        box-sizing: border-box !important;
     }
     .mobile_menu_container li { 
         display: block !important; 
         width: 100% !important; 
         float: none !important; 
-        border-bottom: 1px solid #eee; 
+        border-bottom: 1px solid #eee;
+        box-sizing: border-box !important;
+        overflow: visible !important;
     }
     .mobile_menu_container > ul > li > a { 
         display: flex !important; 
@@ -272,6 +276,7 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
         align-items: center; 
         position: relative; 
         box-sizing: border-box;
+        overflow: visible !important;
     }
     /* Force color for any nested elements like span and handle states */
     .mobile_menu_container a, 
@@ -306,24 +311,43 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
     .mobile_menu_container .gnb2 { 
         display: none; 
         background: #f7f7f7; 
-        padding: 15px 0 !important; 
-        margin-bottom: 15px; 
+        padding: 15px 20px !important; 
+        margin: 10px 0 15px 0;
         border-radius: 8px; 
-        border-bottom: none !important; 
+        border-bottom: none !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
     }
     .mobile_menu_container .gnb2 li { 
         border-bottom: none !important; 
-        padding: 0 20px; 
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+        overflow: visible !important;
     }
     .mobile_menu_container .gnb2 li a { 
         display: block !important;
-        font-size: 15px; 
-        color: #666; 
-        padding: 10px 0; 
-        font-weight: 400; 
-        justify-content: flex-start;
+        font-size: 15px !important; 
+        color: #666 !important; 
+        padding: 12px 15px !important; 
+        font-weight: 400 !important; 
+        text-align: center !important;
+        white-space: normal !important;
+        word-wrap: break-word !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        overflow: visible !important;
+        line-height: 1.4 !important;
+        border-left: 3px solid transparent !important;
+        transition: all 0.2s !important;
     }
-    .mobile_menu_container .gnb2 li a::after { content: none; } /* No arrow for sub-items */
+    .mobile_menu_container .gnb2 li a:hover,
+    .mobile_menu_container .gnb2 li a:active { 
+        color: #213257 !important;
+        background: #fff !important;
+        border-left-color: #213257 !important;
+    }
+    .mobile_menu_container .gnb2 li a::after { content: none !important; } /* No arrow for sub-items */
 
     .section, .fp-section, .fp-tableCell { height: auto !important; padding: 60px 0 !important; display: block !important; }
     
