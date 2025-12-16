@@ -797,15 +797,17 @@ function fn_winCheck(){
 $(function() {
     console.log('Mobile menu script loaded');
     
-    // Mobile Menu: Event handler for mobile menu button toggle
-    $(document).on('click', '.mobile_menu_btn', function(e){
-        e.preventDefault();
-        e.stopPropagation();
+    // Mobile Menu Toggle Function
+    function toggleMobileMenu(e) {
+        if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
         console.log('Mobile menu button clicked!');
         
         var $menuContainer = $('.mobile_menu_container');
         var $overlay = $('.mobile_menu_overlay');
-        var $btn = $(this);
+        var $btn = $('.mobile_menu_btn');
         
         $menuContainer.toggleClass('active');
         $btn.toggleClass('active');
@@ -820,17 +822,28 @@ $(function() {
             $('body').css('overflow', '');
             console.log('Menu closed - body scroll enabled');
         }
+    }
+    
+    // Mobile Menu: Event handler for mobile menu button toggle (multiple event types for better compatibility)
+    $(document).on('click touchstart', '.mobile_menu_btn', function(e){
+        toggleMobileMenu(e);
+    });
+    
+    // Direct binding as backup
+    $('.mobile_menu_btn').on('click touchstart', function(e){
+        toggleMobileMenu(e);
     });
 
     // Close menu when overlay is clicked
-    $(document).on('click', '.mobile_menu_overlay', function(){
+    $(document).on('click touchstart', '.mobile_menu_overlay', function(e){
+        e.preventDefault();
         if (typeof window.closeMobileMenu === 'function') {
             window.closeMobileMenu();
         }
     });
 
     // Event handler for mobile main menu (gnb1) - toggle submenu
-    $(document).on('click', '.mobile_menu_container .gnb1 > a', function(e){
+    $(document).on('click touchstart', '.mobile_menu_container .gnb1 > a', function(e){
         var $parent = $(this).parent('.gnb1');
         var $submenu = $parent.find('.gnb2');
         
@@ -853,7 +866,7 @@ $(function() {
     });
 
     // Close menu when submenu link is clicked (allow navigation first)
-    $(document).on('click', '.mobile_menu_container .gnb2 a', function(e){
+    $(document).on('click touchstart', '.mobile_menu_container .gnb2 a', function(e){
         // Don't prevent default - let the link work
         console.log('Submenu clicked:', $(this).text());
         // Close menu after a tiny delay to allow navigation

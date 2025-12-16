@@ -237,7 +237,7 @@ $(function() {
                 <div class="tel">
                     <a href="tel:1688-0458"><p><strong>1688-0458</strong></p></a>
 				</div>
-            <button class="mobile_menu_btn"><span></span><span></span><span></span></button>
+            <button class="mobile_menu_btn" onclick="toggleMobileMenu(event)"><span></span><span></span><span></span></button>
 			</div>
 		</div>
 	</header>
@@ -1061,6 +1061,30 @@ $(window).load(function() {
 		once:true,
 	});
 
+    // Global function to toggle mobile menu (accessible from onclick)
+    window.toggleMobileMenu = function(e){
+        if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        console.log('toggleMobileMenu called');
+        var $menuContainer = $('.mobile_menu_container');
+        var $overlay = $('.mobile_menu_overlay');
+        var $btn = $('.mobile_menu_btn');
+        
+        $menuContainer.toggleClass('active');
+        $btn.toggleClass('active');
+        $overlay.toggleClass('active');
+        
+        if ($menuContainer.hasClass('active')) {
+            $('body').css('overflow', 'hidden');
+            console.log('Menu opened');
+        } else {
+            $('body').css('overflow', '');
+            console.log('Menu closed');
+        }
+    };
+    
     // Global function to close mobile menu (accessible from common.js)
     window.closeMobileMenu = function(){
         console.log('Closing mobile menu...');

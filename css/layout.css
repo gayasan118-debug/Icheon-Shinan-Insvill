@@ -117,7 +117,7 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
     img { max-width: 100%; height: auto; }
     
     /* Header Mobile */
-    header { height: 60px; background: #fff; border-bottom: 1px solid #eee; transition: none; position: fixed; top: 0; width: 100%; z-index: 1001; }
+    header { height: 60px; background: #fff; border-bottom: 1px solid #eee; transition: none; position: fixed; top: 0; width: 100%; z-index: 1001; pointer-events: auto; }
     header:hover { height: 60px; }
     header .head_in { height: 60px; min-width: 100%; overflow: visible; }
     header h1 { top: 50%; transform: translateY(-50%); left: 20px; margin: 0; }
@@ -142,6 +142,8 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
         top: 50% !important;
         transform: translateY(-50%) !important;
         right: 20px !important;
+        z-index: 10002 !important;
+        pointer-events: auto !important;
     }
     header .rig .open { display: none; }
     header .rig .tel { 
@@ -172,11 +174,13 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
         background: none !important; 
         border: none !important; 
         margin: 0 !important; 
-        padding: 0 !important;
+        padding: 5px !important;
         cursor: pointer !important; 
         pointer-events: auto !important;
         flex-shrink: 0 !important;
         outline: none !important;
+        -webkit-tap-highlight-color: transparent !important;
+        touch-action: manipulation !important;
     }
     header.sub .mobile_menu_btn {
         position: relative !important;
