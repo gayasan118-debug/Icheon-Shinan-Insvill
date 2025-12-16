@@ -199,7 +199,7 @@ var g5_cookie_domain = "";
         <!-- <div style="text-align: center;" data-aos="fade-up">
             <img src="https://xn--om2b95a99s7bt4be5et2dc4ov7m6nd.com/images/new_commingsoon_img.png">
         </div> -->        
-		<img data-aos="fade-up" data-aos-delay="400" src="../images/sub13.jpg?ver=3" usemap="#image-map">               
+		<img class="location-map" data-aos="fade-up" data-aos-delay="400" src="../images/sub13.jpg?ver=3" usemap="#image-map">               
         <map name="image-map" data-aos="fade-up" data-aos-delay="600">
             <area target="_blank" href="https://naver.me/xlbBRyUH" coords="398,381,432,414" shape="rect">
             <area target="_blank" href="https://kko.kakao.com/2H7K3NN6-3" coords="436,383,469,416" shape="0">
@@ -208,6 +208,30 @@ var g5_cookie_domain = "";
         </map>
 	</div>
 </div>
+
+<style>
+@media screen and (max-width: 1024px) {
+    .location-map {
+        width: 100% !important;
+        height: auto !important;
+        object-fit: contain !important;
+        display: block !important;
+        margin: 0 auto !important;
+    }
+}
+</style>
+
+<script>
+$(document).ready(function() {
+    // 이미지 맵을 반응형으로 만들기
+    $('img[usemap]').rwdImageMaps();
+    
+    // 이미지 로드 후 다시 적용
+    $('.location-map').on('load', function() {
+        $(this).rwdImageMaps();
+    });
+});
+</script>
 
 	<footer>
         <div class="inner">

@@ -560,6 +560,15 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
     .content .inner img { width: 100% !important; height: auto !important; display: block !important; margin: 0 auto; }
     .content .inner img.mt35 { margin-top: 30px !important; }
     .content .inner img.mt80 { margin-top: 50px !important; }
+    
+    /* 오시는길 페이지 이미지 세로 배치 */
+    .content .inner img[src*="sub13"] {
+        max-width: 100% !important;
+        width: 100% !important;
+        height: auto !important;
+        object-fit: contain !important;
+        display: block !important;
+    }
     .content .inner .sub_location { margin-bottom: 30px; position: relative; }
     .content .inner .sub_location img { position: relative !important; width: 100% !important; height: auto !important; display: block !important; }
     .content .inner .sub_location img.absolute { position: relative !important; opacity: 1 !important; margin-top: 20px; }
