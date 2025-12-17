@@ -794,7 +794,11 @@ function fn_winCheck(){
 	return false;	
 }
 
-// Mobile menu close function - global
+// ============================================================
+// 모바일 메뉴 - 실제 클래스명(.mobile_menu_btn, .gnb1, .gnb2) 사용
+// ============================================================
+
+// 전역 메뉴 닫기 함수
 window.closeMobileMenu = function() {
     $('.mobile_menu_container').removeClass('active');
     $('.mobile_menu_btn').removeClass('active');
@@ -802,94 +806,86 @@ window.closeMobileMenu = function() {
     $('.mobile_menu_container .gnb1').removeClass('open');
     $('.mobile_menu_container .gnb2').hide();
     $('body').css('overflow', '');
-    console.log('Mobile menu closed');
 };
 
-$(function() {
-    console.log('✅ Mobile menu script loaded - Using actual class names: .gnb1, .gnb2, .mobile_menu_btn');
+// Document Ready - 로딩 완료 후 실행
+$(document).ready(function() {
+    console.log('✅ Mobile menu initialized with classes: .mobile_menu_btn, .gnb1, .gnb2');
     
     // ========================================
-    // 1단계: 햄버거 버튼 클릭 → 메뉴 패널 열기
+    // 1. 햄버거 버튼(.mobile_menu_btn) 클릭 → 메뉴 열기/닫기
     // ========================================
     $(document).on('click', '.mobile_menu_btn', function(e){
         e.preventDefault();
         e.stopPropagation();
         
-        var $menuContainer = $('.mobile_menu_container');
+        var $container = $('.mobile_menu_container');
         var $overlay = $('.mobile_menu_overlay');
         var $btn = $(this);
         
         // 토글
-        $menuContainer.toggleClass('active');
+        $container.toggleClass('active');
         $btn.toggleClass('active');
         $overlay.toggleClass('active');
         
         // Body 스크롤 제어
-        if ($menuContainer.hasClass('active')) {
+        if ($container.hasClass('active')) {
             $('body').css('overflow', 'hidden');
             console.log('🍔 Menu opened');
         } else {
             $('body').css('overflow', '');
-            console.log('❌ Menu closed');
+            console.log('✖ Menu closed');
         }
     });
 
     // 오버레이 클릭 → 메뉴 닫기
     $(document).on('click', '.mobile_menu_overlay', function(e){
         e.preventDefault();
-        if (typeof window.closeMobileMenu === 'function') {
-            window.closeMobileMenu();
-        }
+        window.closeMobileMenu();
+        console.log('✖ Menu closed by overlay');
     });
 
     // ========================================
-    // 2단계: 대메뉴(gnb1) 클릭 → 서브메뉴(gnb2) 아코디언 펼치기
-    // preventDefault 적용 = 페이지 이동 없음!
+    // 2. 대메뉴(.gnb1) 클릭 → 서브메뉴(.gnb2) 아코디언 펼치기
+    //    e.preventDefault() 적용 = 페이지 이동 없음!
     // ========================================
     $(document).on('click', '.mobile_menu_container .gnb1 > a', function(e){
-        var $this = $(this);
-        var $parent = $this.parent('.gnb1');
+        var $link = $(this);
+        var $parent = $link.parent('.gnb1');
         var $submenu = $parent.find('.gnb2');
-        
-        console.log('📂 Main menu clicked:', $this.text().trim());
         
         // 서브메뉴가 있는 경우만 아코디언 동작
         if($submenu.length > 0 && $submenu.find('li').length > 0){
-            e.preventDefault(); // ⭐ 페이지 이동 막기!
+            e.preventDefault(); // ⭐ 페이지 이동 막기
             e.stopPropagation();
             
-            console.log('   → Has submenu, preventing navigation');
+            console.log('📂 Main menu clicked:', $link.text().trim(), '→ Opening submenu');
             
-            // 다른 메뉴 닫기 (아코디언 효과)
-            $parent.siblings('.gnb1').removeClass('open').find('.gnb2').slideUp(300);
+            // 다른 메뉴 닫기 (아코디언)
+            $parent.siblings('.gnb1').removeClass('open').find('.gnb2').slideUp(250);
             
             // 현재 메뉴 토글
             $parent.toggleClass('open');
-            $submenu.stop().slideToggle(300);
-            
-            console.log('   → Submenu toggled');
+            $submenu.stop().slideToggle(250);
         } else {
-            console.log('   → No submenu, allowing navigation');
-            // href가 있는 경우 (관심고객등록 등) 정상 이동
+            // 서브메뉴 없음 → 정상 이동 (관심고객등록 등)
+            console.log('🔗 Main menu link (no submenu):', $link.attr('href'));
         }
     });
 
     // ========================================
-    // 3단계: 서브메뉴(gnb2) 클릭 → 실제 페이지 이동
-    // preventDefault 하지 않음 = 링크 정상 작동!
+    // 3. 서브메뉴(.gnb2) 클릭 → 실제 페이지 이동
+    //    preventDefault 하지 않음 = 링크 정상 작동!
     // ========================================
     $(document).on('click', '.mobile_menu_container .gnb2 a', function(e){
-        var linkText = $(this).text().trim();
-        console.log('🔗 Submenu link clicked:', linkText);
-        console.log('   → Navigating to:', $(this).attr('href'));
+        var href = $(this).attr('href');
+        console.log('🔗 Submenu link clicked → Navigating to:', href);
         
-        // preventDefault 하지 않음 → 링크가 정상적으로 작동
+        // preventDefault 안 함 → 링크가 정상 작동
         
         // 짧은 딜레이 후 메뉴 닫기
         setTimeout(function(){
-            if (typeof window.closeMobileMenu === 'function') {
-                window.closeMobileMenu();
-            }
+            window.closeMobileMenu();
         }, 100);
     });
 });
