@@ -843,26 +843,50 @@ $(function() {
     });
 
     // Event handler for mobile main menu (gnb1) - toggle submenu
-    $(document).on('click touchstart', '.mobile_menu_container .gnb1 > a', function(e){
+    $(document).on('click', '.mobile_menu_container .gnb1 > a', function(e){
         var $parent = $(this).parent('.gnb1');
         var $submenu = $parent.find('.gnb2');
         
-        console.log('Main menu clicked:', $(this).text(), 'Has submenu:', $submenu.length > 0);
+        console.log('Main menu clicked:', $(this).text().trim());
+        console.log('Has submenu:', $submenu.length > 0);
+        console.log('Submenu items:', $submenu.find('li').length);
         
         // Check if submenu exists and has items
         if($submenu.length > 0 && $submenu.find('li').length > 0){
-            e.preventDefault(); // Prevent navigation only if submenu exists
+            e.preventDefault();
+            e.stopPropagation();
             
-            // Toggle open class
+            console.log('Toggling submenu...');
+            
+            // Close other open submenus first (Accordion effect)
+            $parent.siblings('.gnb1').removeClass('open').find('.gnb2').slideUp(300);
+            
+            // Toggle current menu
             $parent.toggleClass('open');
-            
-            // Slide toggle the submenu
             $submenu.stop().slideToggle(300);
             
-            // Close other open submenus (Accordion effect)
-            $parent.siblings('.gnb1').removeClass('open').find('.gnb2').slideUp(300);
+            console.log('Parent has open class:', $parent.hasClass('open'));
+        } else {
+            console.log('No submenu found, allowing navigation');
         }
-        // If no submenu exists, link will navigate normally
+    });
+    
+    // Direct binding as backup
+    $('.mobile_menu_container .gnb1 > a').on('click', function(e){
+        var $parent = $(this).parent('.gnb1');
+        var $submenu = $parent.find('.gnb2');
+        
+        if($submenu.length > 0 && $submenu.find('li').length > 0){
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Close others
+            $parent.siblings('.gnb1').removeClass('open').find('.gnb2').slideUp(300);
+            
+            // Toggle current
+            $parent.toggleClass('open');
+            $submenu.stop().slideToggle(300);
+        }
     });
 
     // Close menu when submenu link is clicked (allow navigation first)
