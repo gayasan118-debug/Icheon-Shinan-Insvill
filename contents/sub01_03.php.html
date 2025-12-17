@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -196,21 +196,56 @@ var g5_cookie_domain = "";
 
 <div class="content">
 	<div class="inner">
-        <!-- <div style="text-align: center;" data-aos="fade-up">
-            <img src="https://xn--om2b95a99s7bt4be5et2dc4ov7m6nd.com/images/new_commingsoon_img.png">
-        </div> -->        
-		<img class="location-map" data-aos="fade-up" data-aos-delay="400" src="../images/sub13.jpg?ver=3" usemap="#image-map">               
-        <map name="image-map" data-aos="fade-up" data-aos-delay="600">
-            <area target="_blank" href="https://naver.me/xlbBRyUH" coords="398,381,432,414" shape="rect">
-            <area target="_blank" href="https://kko.kakao.com/2H7K3NN6-3" coords="436,383,469,416" shape="0">
-            <area target="_blank" href="https://naver.me/5b0gwe2X" coords="1084,382,1121,415" shape="0">
-            <area target="_blank" href="https://kko.kakao.com/bUJnMSvY4v" coords="1126,378,1157,414" shape="0">
-        </map>
+        <div class="location-container">
+            <div class="location-item" data-aos="fade-up" data-aos-delay="200">
+                <img class="location-map" src="../images/sub13.jpg?ver=3" usemap="#image-map">
+                <map name="image-map">
+                    <area target="_blank" href="https://naver.me/xlbBRyUH" coords="398,381,432,414" shape="rect">
+                    <area target="_blank" href="https://kko.kakao.com/2H7K3NN6-3" coords="436,383,469,416" shape="0">
+                    <area target="_blank" href="https://naver.me/5b0gwe2X" coords="1084,382,1121,415" shape="0">
+                    <area target="_blank" href="https://kko.kakao.com/bUJnMSvY4v" coords="1126,378,1157,414" shape="0">
+                </map>
+            </div>
+            <div class="location-item" data-aos="fade-up" data-aos-delay="400">
+                <img class="location-map" src="../images/sub21-map.png?ver=1" alt="오시는 길 지도">
+            </div>
+        </div>
 	</div>
 </div>
 
 <style>
+/* 오시는 길 이미지 컨테이너 */
+.location-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+}
+
+.location-item {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.location-item:last-child {
+    margin-bottom: 0;
+}
+
+.location-map {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
 @media screen and (max-width: 1024px) {
+    .location-container {
+        gap: 0;
+    }
+    
+    .location-item {
+        margin-bottom: 20px;
+    }
+    
     .location-map {
         width: 100% !important;
         height: auto !important;
