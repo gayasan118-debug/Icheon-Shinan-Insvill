@@ -806,105 +806,86 @@ window.closeMobileMenu = function() {
 };
 
 $(function() {
-    console.log('Mobile menu script loaded');
+    console.log('✅ Mobile menu script loaded - Using actual class names: .gnb1, .gnb2, .mobile_menu_btn');
     
-    // Mobile Menu Toggle Function
-    function toggleMobileMenu(e) {
-        if (e) {
-            e.preventDefault();
-            e.stopPropagation();
-        }
-        console.log('Mobile menu button clicked!');
+    // ========================================
+    // 1단계: 햄버거 버튼 클릭 → 메뉴 패널 열기
+    // ========================================
+    $(document).on('click', '.mobile_menu_btn', function(e){
+        e.preventDefault();
+        e.stopPropagation();
         
         var $menuContainer = $('.mobile_menu_container');
         var $overlay = $('.mobile_menu_overlay');
-        var $btn = $('.mobile_menu_btn');
+        var $btn = $(this);
         
+        // 토글
         $menuContainer.toggleClass('active');
         $btn.toggleClass('active');
         $overlay.toggleClass('active');
         
-        console.log('Menu active:', $menuContainer.hasClass('active'));
-
+        // Body 스크롤 제어
         if ($menuContainer.hasClass('active')) {
             $('body').css('overflow', 'hidden');
-            console.log('Menu opened - body scroll disabled');
+            console.log('🍔 Menu opened');
         } else {
             $('body').css('overflow', '');
-            console.log('Menu closed - body scroll enabled');
+            console.log('❌ Menu closed');
         }
-    }
-    
-    // Mobile Menu: Event handler for mobile menu button toggle (multiple event types for better compatibility)
-    $(document).on('click touchstart', '.mobile_menu_btn', function(e){
-        toggleMobileMenu(e);
-    });
-    
-    // Direct binding as backup
-    $('.mobile_menu_btn').on('click touchstart', function(e){
-        toggleMobileMenu(e);
     });
 
-    // Close menu when overlay is clicked
-    $(document).on('click touchstart', '.mobile_menu_overlay', function(e){
+    // 오버레이 클릭 → 메뉴 닫기
+    $(document).on('click', '.mobile_menu_overlay', function(e){
         e.preventDefault();
         if (typeof window.closeMobileMenu === 'function') {
             window.closeMobileMenu();
         }
     });
 
-    // Event handler for mobile main menu (gnb1) - toggle submenu
+    // ========================================
+    // 2단계: 대메뉴(gnb1) 클릭 → 서브메뉴(gnb2) 아코디언 펼치기
+    // preventDefault 적용 = 페이지 이동 없음!
+    // ========================================
     $(document).on('click', '.mobile_menu_container .gnb1 > a', function(e){
-        var $parent = $(this).parent('.gnb1');
+        var $this = $(this);
+        var $parent = $this.parent('.gnb1');
         var $submenu = $parent.find('.gnb2');
         
-        console.log('Main menu clicked:', $(this).text().trim());
-        console.log('Has submenu:', $submenu.length > 0);
-        console.log('Submenu items:', $submenu.find('li').length);
+        console.log('📂 Main menu clicked:', $this.text().trim());
         
-        // Check if submenu exists and has items
+        // 서브메뉴가 있는 경우만 아코디언 동작
         if($submenu.length > 0 && $submenu.find('li').length > 0){
-            e.preventDefault();
+            e.preventDefault(); // ⭐ 페이지 이동 막기!
             e.stopPropagation();
             
-            console.log('Toggling submenu...');
+            console.log('   → Has submenu, preventing navigation');
             
-            // Close other open submenus first (Accordion effect)
+            // 다른 메뉴 닫기 (아코디언 효과)
             $parent.siblings('.gnb1').removeClass('open').find('.gnb2').slideUp(300);
             
-            // Toggle current menu
+            // 현재 메뉴 토글
             $parent.toggleClass('open');
             $submenu.stop().slideToggle(300);
             
-            console.log('Parent has open class:', $parent.hasClass('open'));
+            console.log('   → Submenu toggled');
         } else {
-            console.log('No submenu found, allowing navigation');
-        }
-    });
-    
-    // Direct binding as backup
-    $('.mobile_menu_container .gnb1 > a').on('click', function(e){
-        var $parent = $(this).parent('.gnb1');
-        var $submenu = $parent.find('.gnb2');
-        
-        if($submenu.length > 0 && $submenu.find('li').length > 0){
-            e.preventDefault();
-            e.stopPropagation();
-            
-            // Close others
-            $parent.siblings('.gnb1').removeClass('open').find('.gnb2').slideUp(300);
-            
-            // Toggle current
-            $parent.toggleClass('open');
-            $submenu.stop().slideToggle(300);
+            console.log('   → No submenu, allowing navigation');
+            // href가 있는 경우 (관심고객등록 등) 정상 이동
         }
     });
 
-    // Close menu when submenu link is clicked (allow navigation first)
-    $(document).on('click touchstart', '.mobile_menu_container .gnb2 a', function(e){
-        // Don't prevent default - let the link work
-        console.log('Submenu clicked:', $(this).text());
-        // Close menu after a tiny delay to allow navigation
+    // ========================================
+    // 3단계: 서브메뉴(gnb2) 클릭 → 실제 페이지 이동
+    // preventDefault 하지 않음 = 링크 정상 작동!
+    // ========================================
+    $(document).on('click', '.mobile_menu_container .gnb2 a', function(e){
+        var linkText = $(this).text().trim();
+        console.log('🔗 Submenu link clicked:', linkText);
+        console.log('   → Navigating to:', $(this).attr('href'));
+        
+        // preventDefault 하지 않음 → 링크가 정상적으로 작동
+        
+        // 짧은 딜레이 후 메뉴 닫기
         setTimeout(function(){
             if (typeof window.closeMobileMenu === 'function') {
                 window.closeMobileMenu();
