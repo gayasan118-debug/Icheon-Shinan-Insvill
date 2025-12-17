@@ -299,8 +299,89 @@ $(document).ready(function() {
 	</footer>
 </div>
 
+<style>
+/* Mobile menu */
+.mobile_menu_container{position:fixed;top:0;right:-100%;bottom:0;width:75% !important;max-width:400px;background:#fff;z-index:10001;transition:right .4s ease-in-out;overflow-y:auto;overflow-x:visible;box-shadow:-4px 0 20px rgba(0,0,0,.1);}
+.mobile_menu_container.active{right:0 !important;}
+.mobile_menu_overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100vh;background:rgba(0,0,0,0.5);z-index:10000;opacity:0;transition:opacity .4s ease;}
+.mobile_menu_overlay.active{display:block;opacity:1;}
+.mobile_menu_container .mobile_menu_inner{padding:24px 20px 60px;}
+.mobile_menu_container .mobile_menu_inner h2{font-size:20px;font-weight:700;margin-bottom:24px;color:#213257;padding-bottom:16px;border-bottom:2px solid #213257;}
+.mobile_menu_container ul{list-style:none;margin:0;padding:0;width:100%;box-sizing:border-box;}
+.mobile_menu_container .gnb1{border-bottom:1px solid #eee;overflow:visible;}
+.mobile_menu_container .gnb1>a{display:flex;justify-content:space-between;align-items:center;padding:16px 8px;font-size:17px;font-weight:700;color:#222;text-decoration:none;transition:color .2s;overflow:visible;}
+.mobile_menu_container .gnb1>a:after{content:"";display:inline-block;width:10px;height:10px;border-right:2px solid #666;border-bottom:2px solid #666;transform:rotate(45deg);transition:transform .3s ease;margin-right:4px;}
+.mobile_menu_container .gnb1.open>a{color:#213257;}
+.mobile_menu_container .gnb1.open>a:after{transform:rotate(-135deg);border-color:#213257;}
+.mobile_menu_container .gnb2{display:none;padding:15px 20px;background:#f8f8f8;margin:10px 0 15px 0;border-radius:8px;width:100%;box-sizing:border-box;}
+.mobile_menu_container .gnb2 li{list-style:none;border:none !important;padding:0;margin:0;width:100%;overflow:visible;}
+.mobile_menu_container .gnb2 li a{display:block;padding:12px 15px;font-size:15px;color:#555;text-decoration:none;transition:all .2s;border-left:3px solid transparent;text-align:center;white-space:normal;word-wrap:break-word;width:100%;box-sizing:border-box;overflow:visible;line-height:1.4;}
+.mobile_menu_container .gnb2 li a:hover,
+.mobile_menu_container .gnb2 li a:active{color:#213257;background:#fff;border-left-color:#213257;}
+.mobile_menu_container .tel_box{margin-top:24px;padding:16px;background:#213257;border-radius:8px;text-align:center;}
+.mobile_menu_container .tel_box a{color:#fff;font-size:16px;font-weight:700;text-decoration:none;display:block;}
+@media(min-width:1025px){.mobile_menu_container{display:none !important;}}
+</style>
+
 <div class="mobile_menu_overlay"></div>
 <div class="mobile_menu_container">
+	<div class="mobile_menu_inner">
+		<h2>만안역 중앙하이츠 포레</h2>
+		<ul>
+			<li class="gnb1">
+				<a href="javascript:void(0)">사업안내</a>
+				<ul class="gnb2">
+					<li><a href="sub01_01.php.html">사업개요</a></li>
+					<li><a href="sub01_02.php.html">브랜드 소개</a></li>
+					<li><a href="sub01_03.php.html">오시는길</a></li>
+					<li><a href="../images/document01.pdf" target="_blank">상호협의결과서</a></li>
+				</ul>
+			</li>
+			<li class="gnb1">
+				<a href="javascript:void(0)">프리미엄</a>
+				<ul class="gnb2">
+					<li><a href="sub02_01.php.html">입지환경</a></li>
+					<li><a href="sub02_02.php.html">프리미엄7</a></li>
+				</ul>
+			</li>
+			<li class="gnb1">
+				<a href="javascript:void(0)">단지안내</a>
+				<ul class="gnb2">
+					<li><a href="sub03_01.php.html">단지배치도</a></li>
+					<li><a href="sub03_02.php.html">동·호수 배치도</a></li>
+					<li><a href="sub03_03.php.html">커뮤니티</a></li>
+				</ul>
+			</li>
+			<li class="gnb1">
+				<a href="javascript:void(0)">세대안내</a>
+				<ul class="gnb2">
+					<li><a href="sub04_01.php.html">평면안내</a></li>
+					<li><a href="sub04_02.php.html">마감재 리스트</a></li>
+				</ul>
+			</li>
+			<li class="gnb1">
+				<a href="javascript:void(0)">분양안내</a>
+				<ul class="gnb2">
+					<li><a href="sub06_01.php.html">분양일정</a></li>
+					<li><a href="sub06_03.php.html">입주자 모집공고</a></li>
+					<li><a href="sub06_04.php.html">주택시장 안정화 대책</a></li>
+				</ul>
+			</li>
+			<li class="gnb1">
+				<a href="javascript:void(0)">홍보센터</a>
+				<ul class="gnb2">
+					<li><a href="../bbs/board.php.html?bo_table=news">언론보도</a></li>
+					<li><a href="sub07_02.php.html">홍보영상</a></li>
+				</ul>
+			</li>
+			<li class="gnb1">
+				<a href="../bbs/write.php.html?bo_table=customer">관심고객등록</a>
+			</li>
+		</ul>
+		<div class="tel_box">
+			<a href="tel:1688-0458">대표번호 1688-0458</a>
+		</div>
+	</div>
 </div>
 
 
@@ -339,20 +420,12 @@ $(document).ready(function() {
 		once:true,
 	});
 
-	// Mobile Menu Initialization
-	var $mobileMenuContainer = $('.mobile_menu_container');
-	var $pcMenu = $('header .menu > ul');
-
-	if ($mobileMenuContainer.length > 0 && $pcMenu.length > 0) {
-		$mobileMenuContainer.empty();
-		var $menuContent = $pcMenu.clone();
-		$mobileMenuContainer.append($menuContent);
-	}
-
-	// Mobile Menu Click Handler
-	$('.mobile_menu_btn').off('click').on('click', function(e){
+	// Mobile Menu: 햄버거 버튼 클릭 - 메뉴 패널 토글
+	$('.mobile_menu_btn').on('click', function(e){
 		e.preventDefault();
 		e.stopPropagation();
+		
+		console.log('Hamburger button clicked');
 		
 		$(this).toggleClass('active');
 		$('.mobile_menu_container').toggleClass('active');
@@ -365,32 +438,54 @@ $(document).ready(function() {
 		}
 	});
 	
-	// Close menu when overlay is clicked
-	$('.mobile_menu_overlay').off('click').on('click', function(){
+	// Overlay 클릭시 메뉴 닫기
+	$('.mobile_menu_overlay').on('click', function(){
 		$('.mobile_menu_btn').removeClass('active');
 		$('.mobile_menu_container').removeClass('active');
 		$('.mobile_menu_overlay').removeClass('active');
 		$('body').css('overflow', '');
 	});
 
-	// Mobile Sub Menu Toggle
+	// 대메뉴 클릭 - 서브메뉴 아코디언 토글 (페이지 이동 없음)
 	$(document).on('click', '.mobile_menu_container .gnb1 > a', function(e){
-		if($(this).next('.gnb2').length > 0){
+		var $this = $(this);
+		var $parent = $this.parent('.gnb1');
+		var $submenu = $parent.find('.gnb2');
+		
+		console.log('Main menu clicked:', $this.text().trim());
+		console.log('Has submenu:', $submenu.length > 0);
+		
+		// 서브메뉴가 있는 경우에만 아코디언 동작
+		if($submenu.length > 0 && $submenu.find('li').length > 0){
 			e.preventDefault();
-			$(this).parent('li').toggleClass('active');
-			$(this).next('.gnb2').stop().slideToggle();
-			$(this).parent('li').siblings().removeClass('active').find('.gnb2').slideUp();
+			e.stopPropagation();
+			
+			// 다른 메뉴들은 닫기
+			$parent.siblings('.gnb1').removeClass('open').find('.gnb2').slideUp(300);
+			
+			// 현재 메뉴 토글
+			$parent.toggleClass('open');
+			$submenu.stop().slideToggle(300);
+			
+			console.log('Submenu toggled');
 		}
+		// 서브메뉴가 없으면 링크로 이동 (관심고객등록 등)
 	});
 
-	// Close mobile menu when clicking sub-menu links
-	$('.mobile_menu_container .gnb2 a').off('click').on('click', function(){
-		$('.mobile_menu_btn').removeClass('active');
-		$('.mobile_menu_container').removeClass('active');
-		$('.mobile_menu_overlay').removeClass('active');
-		$('.mobile_menu_container .gnb1').removeClass('active');
-		$('.mobile_menu_container .gnb2').hide();
-		$('body').css('overflow', '');
+	// 서브메뉴 클릭 - 실제 페이지 이동 및 메뉴 닫기
+	$(document).on('click', '.mobile_menu_container .gnb2 a', function(e){
+		console.log('Submenu link clicked:', $(this).text());
+		// preventDefault 하지 않아서 링크가 정상 작동
+		
+		// 메뉴 닫기
+		setTimeout(function(){
+			$('.mobile_menu_btn').removeClass('active');
+			$('.mobile_menu_container').removeClass('active');
+			$('.mobile_menu_overlay').removeClass('active');
+			$('.mobile_menu_container .gnb1').removeClass('open');
+			$('.mobile_menu_container .gnb2').hide();
+			$('body').css('overflow', '');
+		}, 100);
 	});
 </script>
 
