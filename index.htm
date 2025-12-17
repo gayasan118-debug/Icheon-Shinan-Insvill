@@ -966,11 +966,37 @@ $(window).load(function() {
 	   ============================================================ */
 	
 	/* 햄버거 버튼 - 최상위 레이어, 무조건 클릭 가능 */
-	.mobile_menu_btn {
-		position: relative !important;
-		z-index: 10002 !important; /* 모든 요소보다 위 */
-		cursor: pointer !important;
-		pointer-events: auto !important;
+	@media (max-width: 1024px) {
+		.mobile_menu_btn {
+			display: block !important; /* ⭐ 중요: 버튼 표시 */
+			position: relative !important;
+			z-index: 10002 !important; /* 모든 요소보다 위 */
+			cursor: pointer !important;
+			pointer-events: auto !important;
+			width: 30px !important;
+			height: 30px !important;
+			background: none !important;
+			border: none !important;
+			padding: 5px !important;
+			outline: none !important;
+		}
+		.mobile_menu_btn span {
+			display: block !important;
+			width: 100% !important;
+			height: 3px !important;
+			background-color: #333 !important;
+			margin: 5px 0 !important;
+			transition: 0.3s !important;
+		}
+		.mobile_menu_btn.active span:nth-child(1) {
+			transform: rotate(45deg) translate(6px, 6px);
+		}
+		.mobile_menu_btn.active span:nth-child(2) {
+			opacity: 0;
+		}
+		.mobile_menu_btn.active span:nth-child(3) {
+			transform: rotate(-45deg) translate(6px, -7px);
+		}
 	}
 	
 	/* 메뉴 패널 컨테이너 */
