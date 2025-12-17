@@ -794,6 +794,17 @@ function fn_winCheck(){
 	return false;	
 }
 
+// Mobile menu close function - global
+window.closeMobileMenu = function() {
+    $('.mobile_menu_container').removeClass('active');
+    $('.mobile_menu_btn').removeClass('active');
+    $('.mobile_menu_overlay').removeClass('active');
+    $('.mobile_menu_container .gnb1').removeClass('open');
+    $('.mobile_menu_container .gnb2').hide();
+    $('body').css('overflow', '');
+    console.log('Mobile menu closed');
+};
+
 $(function() {
     console.log('Mobile menu script loaded');
     
