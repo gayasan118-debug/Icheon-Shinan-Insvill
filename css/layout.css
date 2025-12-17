@@ -120,8 +120,8 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
     header { height: 60px; background: #fff; border-bottom: 1px solid #eee; transition: none; position: fixed; top: 0; width: 100%; z-index: 1001; pointer-events: auto; }
     header:hover { height: 60px; }
     header .head_in { height: 60px; min-width: 100%; overflow: visible; }
-    header h1 { top: 50%; transform: translateY(-50%); left: 20px; margin: 0; max-width: 50%; }
-    header h1 a { width: 115px; height: 24px; background-size: contain; background-image: url('../images/logo-active.png') !important; } 
+    header h1 { top: 50%; transform: translateY(-50%); left: 20px; margin: 0; max-width: 55%; }
+    header h1 a { width: 140px; height: 29px; background-size: contain; background-image: url('../images/logo-active.png') !important; } 
     
     /* Hide PC Menu */
     header .menu { display: none !important; }
@@ -137,7 +137,7 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
     header .rig { 
         display: flex !important; 
         align-items: center;
-        gap: 12px;
+        gap: 16px;
         position: absolute !important;
         top: 50% !important;
         transform: translateY(-50%) !important;
