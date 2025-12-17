@@ -304,10 +304,15 @@ $(document).ready(function() {
    모바일 메뉴 - 실제 클래스명 사용 (.mobile_menu_btn, .gnb1, .gnb2)
    ============================================================ */
 
-/* 햄버거 버튼 - 최상위 레이어, 무조건 클릭 가능 */
+/* 햄버거 버튼 - layout.css의 display:none을 강제로 덮어씀 */
+.mobile_menu_btn {
+	display: none !important; /* 기본값: 숨김 */
+}
+
+/* 모바일에서만 햄버거 버튼 표시 */
 @media (max-width: 1024px) {
 	.mobile_menu_btn {
-		display: block !important; /* ⭐ 중요: 버튼 표시 */
+		display: block !important; /* ⭐⭐⭐ 중요: 버튼 표시 */
 		position: relative !important;
 		z-index: 10002 !important; /* 모든 요소보다 위 */
 		cursor: pointer !important;
@@ -318,6 +323,7 @@ $(document).ready(function() {
 		border: none !important;
 		padding: 5px !important;
 		outline: none !important;
+		-webkit-tap-highlight-color: transparent !important;
 	}
 	.mobile_menu_btn span {
 		display: block !important;
