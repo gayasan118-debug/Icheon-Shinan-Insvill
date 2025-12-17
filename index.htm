@@ -1364,11 +1364,18 @@ $(window).load(function() {
             });
         });
         
-        // 7. 서브메뉴 클릭 → 페이지 이동
+        // 7. 서브메뉴 클릭 → 즉시 메뉴 닫고 페이지 이동
         const subMenus = document.querySelectorAll('.mobile_menu_container .gnb2 a');
         subMenus.forEach(function(link) {
-            link.addEventListener('click', function() {
-                console.log('🔗 서브메뉴 클릭 → 이동:', this.getAttribute('href'));
+            link.addEventListener('click', function(e) {
+                console.log('🔗 서브메뉴 클릭 → 즉시 이동:', this.getAttribute('href'));
+                
+                // 즉시 메뉴 닫기 (페이지 이동 전)
+                if(menuBtn) menuBtn.classList.remove('active');
+                if(menuContainer) menuContainer.classList.remove('active');
+                if(overlay) overlay.classList.remove('active');
+                document.body.style.overflow = '';  // 스크롤 즉시 풀기
+                
                 // 페이지 이동은 자동으로 일어남 (preventDefault 하지 않음)
             });
         });

@@ -827,7 +827,7 @@ $(document).ready(function() {
         $container.toggleClass('active');
         $btn.toggleClass('active');
         $overlay.toggleClass('active');
-        
+
         // Body 스크롤 제어
         if ($container.hasClass('active')) {
             $('body').css('overflow', 'hidden');
@@ -841,7 +841,7 @@ $(document).ready(function() {
     // 오버레이 클릭 → 메뉴 닫기
     $(document).on('click', '.mobile_menu_overlay', function(e){
         e.preventDefault();
-        window.closeMobileMenu();
+            window.closeMobileMenu();
         console.log('✖ Menu closed by overlay');
     });
 
@@ -885,7 +885,7 @@ $(document).ready(function() {
         
         // 짧은 딜레이 후 메뉴 닫기
         setTimeout(function(){
-            window.closeMobileMenu();
+                window.closeMobileMenu();
         }, 100);
     });
 });

@@ -121,7 +121,7 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
     header:hover { height: 60px; }
     header .head_in { height: 60px; min-width: 100%; overflow: visible; }
     header h1 { top: 50%; transform: translateY(-50%); left: 20px; margin: 0; max-width: 55%; }
-    header h1 a { width: 140px; height: 29px; background-size: contain; background-image: url('../images/logo-active.png') !important; } 
+    header h1 a { width: 161px; height: 33px; background-size: contain; background-image: url('../images/logo-active.png') !important; } /* 15% 증가 */ 
     
     /* Hide PC Menu */
     header .menu { display: none !important; }
@@ -153,14 +153,14 @@ header .rig .tel p strong{font-size:25px;font-weight:600;}
     }
     header .rig .tel p { 
         color: #333; 
-        font-size: 13px; 
+        font-size: 15px; /* 15% 증가 (13px → 15px) */
         font-weight: 700; 
-        padding-left: 20px; 
-        background: url('../images/h-tell-active.png') no-repeat left center / 14px 14px; 
-        margin: 0;
+        padding-left: 22px; 
+        background: url('../images/h-tell-active.png') no-repeat left center / 16px 16px; /* 아이콘도 15% 증가 */
+        margin: 0; 
         white-space: nowrap;
     }
-    header .rig .tel p strong { color: #333; font-size: 14px; }
+    header .rig .tel p strong { color: #333; font-size: 16px; } /* 15% 증가 (14px → 16px) */
 
     /* Mobile Menu Button */
     .mobile_menu_btn { 
