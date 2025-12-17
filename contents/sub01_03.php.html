@@ -344,15 +344,15 @@ $(document).ready(function() {
 	}
 }
 
-/* 메뉴 패널 컨테이너 */
+/* 메뉴 패널 컨테이너 - 헤더 바로 아래에서 화면 끝까지 100% */
 .mobile_menu_container {
 	position: fixed;
-	top: 0;
+	top: 70px;  /* 헤더 바로 아래 (헤더 높이) */
 	right: -100%;
-	bottom: 0;
+	bottom: 0;  /* 화면 아래까지 */
 	width: 75% !important;
 	max-width: 400px;
-	height: 90vh !important;
+	height: calc(100vh - 70px) !important;  /* 화면 높이 100% - 헤더 높이 */
 	background: #fff;
 	z-index: 10001; /* 버튼보다 아래 */
 	transition: right .35s ease-in-out;
